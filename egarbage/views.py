@@ -3,6 +3,7 @@ from django.shortcuts import render
 # Create your views here.
 from egarbage.models import Register
 from .forms import RegisterForm
+from .regions import RwandaRegions
 
 
 def about(request):
@@ -38,3 +39,41 @@ def register(request):
         else:
             return render(request, 'egarbage/register.html')
     return render(request, 'egarbage/register.html', {'form': form})
+
+
+def load_district(request):
+    province = request.GET.get('province')
+    rda_regions = RwandaRegions()
+    all = rda_regions.get_all_regions()
+    district = rda_regions.get_districts_from_province(province)
+    return render(request, 'egarbage/register.html', {'district': district})
+
+
+def load_sector(request):
+    province = request.GET.get('province')
+    district = request.GET.get('district')
+    rda_regions = RwandaRegions()
+    all = rda_regions.get_all_regions()
+    sector = rda_regions.get_sectors_from_district(province, district)
+    return render(request, 'egarbage/register.html', {'sector': sector})
+
+
+def load_cell(request):
+    province = request.GET.get('province')
+    district = request.GET.get('district')
+    sector = request.GET.get('sector')
+    rda_regions = RwandaRegions()
+    all = rda_regions.get_all_regions()
+    cell = rda_regions.get_cells_from_sector(province, district, sector)
+    return render(request, 'egarbage/register.html', {'cell': cell})
+
+
+def load_village(request):
+    province = request.GET.get('province')
+    district = request.GET.get('district')
+    sector = request.GET.get('sector')
+    cell = request.GET.get('cell')
+    rda_regions = RwandaRegions()
+    all = rda_regions.get_all_regions()
+    village = rda_regions.get_villages_from_cell(province, district, sector, cell)
+    return render(request, 'egarbage/register.html', {'village': village})
