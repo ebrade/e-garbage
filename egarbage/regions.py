@@ -6,7 +6,7 @@ from django.conf import settings
 class RwandaRegions:
     @staticmethod
     def get_all_regions():
-        with open(os.path.join(settings.BASE_DIR, "core/rwanda_regions.json"), "r") as f:
+        with open(os.path.join(settings.BASE_DIR, "egarbage/rwanda_regions.json"), "r") as f:
             all_regions = json.load(f)
         return all_regions
 
