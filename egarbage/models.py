@@ -24,6 +24,7 @@ class Register(models.Model):
     street = models.CharField(max_length=50)
     e_waste_type = models.CharField(max_length=30, choices=choices)
     quantity = models.IntegerField(validators=[MinValueValidator(1)])
+    collected = models.BooleanField(default=False)
     timestamp = models.DateTimeField(auto_now_add=True)
 
 
