@@ -21,6 +21,18 @@ class RegisterForm(forms.ModelForm):
         p = (prov, prov)
         provinces.append(p)
 
+    choices = (
+        ('Laptop', 'Laptop'),
+        ('Computer', 'Computer'),
+        ('Phone', 'Phone'),
+        ('Radio', 'Radio'),
+        ('Charger', 'Charger'),
+        ('Speaker', 'Speaker'),
+        ('Printer', 'Printer'),
+        ('Headphone', 'Headphone'),
+        ('Cables', 'Cables')
+    )
+
     province = forms.ChoiceField(choices=provinces, label='Province',
                                  widget=forms.Select(attrs={'class': 'form-control form-control-lg'}))
 

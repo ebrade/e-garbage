@@ -1,7 +1,6 @@
 from django.core.validators import MinValueValidator
 from django.db import models
 
-
 # Create your models here.
 from egarbage.regions import RwandaRegions
 
@@ -19,10 +18,8 @@ class Register(models.Model):
         ('Cables', 'Cables')
     )
 
-
-
     name = models.CharField(max_length=30)
-    province = models.CharField(choices = provinces, max_length=30)
+    province = models.CharField(max_length=30)
     district = models.CharField(max_length=30)
     sector = models.CharField(max_length=30)
     cell = models.CharField(max_length=30)
