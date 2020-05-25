@@ -23,5 +23,6 @@ class Register(models.Model):
     village = models.CharField(max_length=30)
     e_waste_type = models.CharField(max_length=30, choices=choices)
     quantity = models.IntegerField(validators=[MinValueValidator(1)])
+    timestamp = models.DateTimeField(auto_now_add=True)
 
 
