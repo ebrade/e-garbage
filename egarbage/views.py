@@ -2,6 +2,7 @@ from django.shortcuts import render
 
 # Create your views here.
 from egarbage.models import Register
+from .forms import RegisterForm
 
 
 def about(request):
@@ -13,6 +14,7 @@ def history(request):
 
 
 def register(request):
+    form = RegisterForm()
     if request.method == 'POST':
         if request.POST.get('province') and request.POST.get('district') and \
                 request.POST.get('sector') and request.POST.get('cell') and \
@@ -35,4 +37,4 @@ def register(request):
 
         else:
             return render(request, 'egarbage/register.html')
-    return render(request, 'egarbage/register.html')
+    return render(request, 'egarbage/register.html', {'form': form})
