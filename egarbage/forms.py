@@ -39,7 +39,8 @@ class RegisterForm(forms.ModelForm):
     )
 
     province = forms.ChoiceField(choices=provinces, label='Province',
-                                 widget=forms.Select(attrs={'class': 'form-control form-control-md'}))
+                                 widget=forms.Select(attrs={'class': 'form-control form-control-md',
+                                                            'onchange': "getDistricts()"}))
     e_waste_type = forms.ChoiceField(choices=choices, label='E-waste Type',
                                      widget=forms.Select(attrs={'class': 'form-control form-control-md'}))
     district = forms.ChoiceField(choices=district, label='District',

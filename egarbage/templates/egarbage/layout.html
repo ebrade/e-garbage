@@ -16,6 +16,47 @@
         <link rel="shortcut icon" type="image/png" href="http://example.com/favicon.png"/>
 
     {% endblock stylesheets %}
+
+
+
+<script type="text/javascript">
+        function getDistricts(){
+          validate();
+
+          var optionSelected = $('#id_province').find(":selected").text();
+
+
+          $.ajax({
+            url: "{% url 'load_district' %}",
+            data: {'province' : optionSelected },
+            success:function(data){
+
+
+              $("#id_district").empty();
+
+              $.each(data, function(index, value){
+                $('#id_district').append('<option value="district" placeholder="Choose...">'+ value.name + '</option>');
+              })
+            }
+          })
+        }
+
+      function validate(){
+        var choosen_province   = $('#id_province').find(":selected").text();
+        var valueSelected  = $('#id_province').find(":selected").val();
+        $('#submit-button').attr('disabled','disabled');
+
+        if (choosen_province != "Choose..."){
+          $('#submit-button').removeAttr('disabled');
+        }
+      }
+
+
+</script>
+
+
+
+
 </head>
 </head>
 <body>
@@ -59,14 +100,14 @@
 
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="{% static 'egarbage/js/choices.js' %}"></script>
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+{# <script src="{% static 'egarbage/js/choices.js' %}"></script> #}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
-{% block extra_js %}
-    <script src="{% static 'egarbage/js/choices.js' %}"></script>
-{% endblock %}
+{#{% block extra_js %}#}
+{#    <script src="{% static 'egarbage/js/choices.js' %}"></script>#}
+{#{% endblock %}#}
 
 </body>
 </html>

@@ -9,5 +9,5 @@ urlpatterns = [
     path('history/', views.history, name='history'),
     path('register/', views.register, name='register'),
     path('add/', views.RegisterItem.as_view(), name='add_new_item'),
-    path('load_district', views.load_district, name='load_district'),
+    path('load_district/', views.load_district, name='load_district'),
 ]

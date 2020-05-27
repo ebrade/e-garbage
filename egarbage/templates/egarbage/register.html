@@ -2,7 +2,7 @@
     <div>&nbsp;</div>
     <div>&nbsp;</div>
     {% load static %}
-    <form action="" method="post" id="registerForm" data_load_district="{% url 'load_district' %}" novalidate>
+    <form action="" method="post" id="registerForm" novalidate>
         {% csrf_token %}
         <table>
             {{ form.as_p }}
@@ -11,5 +11,5 @@
         <button type="submit" class="btn btn-primary">Register</button>
     </form>
 {% endblock %}
-{% block extra_js %}
-{% endblock %}
+
+

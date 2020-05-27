@@ -1,14 +1,16 @@
+
 $("#id_province").change(function(){
-    var url = $("#registerForm").attr("data_load_district");
+    // var url = {% url 'load_district' %};
     var province = $(this).val();
 
     $.ajax({
-        url: url,
+        url: "url",
         data: {
             'province': province
         },
         success: function (data) {
             $("#id_district").html(data);
+            alert("I got it")
         }
 
         // success: function (data) {

@@ -1,3 +1,5 @@
+import simplejson as simplejson
+from django.http import HttpResponse
 from django.shortcuts import render
 
 # Create your views here.
@@ -53,7 +55,11 @@ def load_district(request):
     province = request.GET.get('province')
     rda_regions = RwandaRegions()
     district = rda_regions.get_districts_from_province(province)
-    return render(request, 'egarbage/register.html', {'district': district})
+    result_set = []
+    for dis in district:
+        result_set.append({'name': dis})
+
+    return HttpResponse(simplejson.dumps(result_set), content_type='application/json')
 
 
 def load_sector(request):
