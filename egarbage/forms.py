@@ -6,22 +6,27 @@ from .regions import RwandaRegions
 class RegisterForm(forms.ModelForm):
     class Meta:
         model = Register
-        exclude = {'timestamp', 'name'}
+        exclude = {'timestamp', 'name', 'collected'}
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['province'].queryset = Register.objects.none()
 
     rda_regions = RwandaRegions()
-    all = rda_regions.get_all_regions()
+    # rda_regions.get_all_regions()
     provinces_list = rda_regions.get_provinces()
-    provinces = []
+    provinces = [('', 'Choose...')]
+    district = [('', 'Choose...')]
+    sector = [('', 'Choose...')]
+    cell = [('', 'Choose...')]
+    village = [('', 'Choose...')]
 
     for prov in provinces_list:
         p = (prov, prov)
         provinces.append(p)
 
     choices = (
+        ('', 'Choose...'),
         ('Laptop', 'Laptop'),
         ('Computer', 'Computer'),
         ('Phone', 'Phone'),
@@ -34,7 +39,18 @@ class RegisterForm(forms.ModelForm):
     )
 
     province = forms.ChoiceField(choices=provinces, label='Province',
-                                 widget=forms.Select(attrs={'class': 'form-control form-control-lg'}))
-
-    e_waste_type = forms.ChoiceField(choices=choices, label='E-Waste Type',
-                                     widget=forms.Select(attrs={'class': 'form-control form-control-lg'}))
+                                 widget=forms.Select(attrs={'class': 'form-control form-control-md'}))
+    e_waste_type = forms.ChoiceField(choices=choices, label='E-waste Type',
+                                     widget=forms.Select(attrs={'class': 'form-control form-control-md'}))
+    district = forms.ChoiceField(choices=district, label='District',
+                                 widget=forms.Select(attrs={'class': 'form-control form-control-md'}))
+    sector = forms.ChoiceField(choices=sector, label='Sector',
+                               widget=forms.Select(attrs={'class': 'form-control form-control-md'}))
+    cell = forms.ChoiceField(choices=cell, label='Cell',
+                             widget=forms.Select(attrs={'class': 'form-control form-control-md'}))
+    village = forms.ChoiceField(choices=village, label='Village',
+                                widget=forms.Select(attrs={'class': 'form-control form-control-md'}))
+    street = forms.CharField(label='Street',
+                             widget=forms.TextInput(attrs={'class': 'form-control form-control-md'}))
+    quantity = forms.IntegerField(label='Quantity',
+                                  widget=forms.NumberInput(attrs={'class': 'form-control form-control-md'}))

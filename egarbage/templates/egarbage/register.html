@@ -1,71 +1,15 @@
 {% extends "egarbage/layout.html" %} {% block title %} Register {% endblock %} {% block content %}
     <div>&nbsp;</div>
     <div>&nbsp;</div>
-    <form action="">
+    {% load static %}
+    <form action="" method="post" id="registerForm" data_load_district="{% url 'load_district' %}" novalidate>
         {% csrf_token %}
-
-        <div class="form-group">
-            <label for="inputAddress">E-waste type</label>
-            <!--
-            <select id="inputState" class="form-control">
-                <option selected>Choose...</option>
-                <option>
-
-                </option>
-            </select> -->
-            {{ form.e_waste_type }}
-        </div>
-        <div class="form-group">
-            <label for="inputAddress">Quantity</label>
-            <input type="text" class="form-control" id="inputAddress" placeholder="Enter a number">
-        </div>
-        <div class="form-group">
-            <label for="inputAddress">Province</label>
-            <!--
-            <select id="inputState" class="form-control">
-                <option selected>Choose...</option>
-                <option>...</option>
-            </select> -->
-            {{ form.province }}
-        </div>
-        <div class="form-group">
-            <label for="inputAddress">District</label>
-{#            <select id="inputState" class="form-control">#}
-{#                <option selected>Choose...</option>#}
-{#                <option>...</option>#}
-{#            </select>#}
-            {{  form.district }}
-        </div>
-        <div class="form-group">
-            <label for="inputAddress2">Sector</label>
-            {#            <select id="inputState" class="form-control">#}
-            {#                <option selected>Choose...</option>#}
-            {#                <option>...</option>#}
-            {#            </select>#}
-            {{  form.sector }}
-        </div>
-        <div class="form-group">
-            <label for="inputAddress2">Cell</label>
-{#            <select id="inputState" class="form-control">#}
-{#                <option selected>Choose...</option>#}
-{#                <option>...</option>#}
-{#            </select>#}
-            {{  form.cell }}
-        </div>
-        <div class="form-group">
-            <label for="inputAddress2">Village</label>
-{#            <select id="inputState" class="form-control">#}
-{#                <option selected>Choose...</option>#}
-{#                <option>...</option>#}
-{#            </select>#}
-            {{ form.village }}
-        </div>
-        <div class="form-group">
-            <label for="inputAddress2">Street Name</label>
-            <input type="text" class="form-control" id="inputAddress2" placeholder="Enter street details">
-        </div>
+        <table>
+            {{ form.as_p }}
+        </table>
 
         <button type="submit" class="btn btn-primary">Register</button>
     </form>
 {% endblock %}
-{% block extra_js %}{% endblock %}
+{% block extra_js %}
+{% endblock %}

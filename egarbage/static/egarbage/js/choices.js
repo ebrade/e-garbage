@@ -1,15 +1,29 @@
-$("#id_country").change(function () {
-    var url = $("#personForm").attr("data-cities-url");  // get the url of the `load_cities` view
-    var countryId = $(this).val();  // get the selected country ID from the HTML input
+$("#id_province").change(function(){
+    var url = $("#registerForm").attr("data_load_district");
+    var province = $(this).val();
 
-    $.ajax({                       // initialize an AJAX request
-        url: url,                    // set the url of the request (= localhost:8000/hr/ajax/load-cities/)
+    $.ajax({
+        url: url,
         data: {
-            'country': countryId       // add the country id to the GET parameters
+            'province': province
         },
-        success: function (data) {   // `data` is the return of the `load_cities` view function
-            $("#id_city").html(data);  // replace the contents of the city input with the data that came from the server
+        success: function (data) {
+            $("#id_district").html(data);
         }
-    });
 
+        // success: function (data) {
+        //     $("id_sector").html(data);
+        // },
+        //
+        // success: function (data) {
+        //     $("id_cell").html(data);
+        // },
+        //
+        // success: function (data) {
+        //     $("id_village").html(data);
+        // },
+
+    });
 });
+
+
