@@ -19,6 +19,7 @@ def history(request):
     return render(request, 'egarbage/history.html')
 
 
+# We have to change this thing below I think it is not necessary at all
 def register(request):
     form = RegisterForm()
     if request.method == 'POST':
@@ -72,7 +73,6 @@ def load_sector(request):
         result_set.append({'name': s})
 
     return HttpResponse(simplejson.dumps(result_set), content_type='application/json')
-
 
 
 def load_cell(request):

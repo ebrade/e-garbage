@@ -2,7 +2,7 @@ from django.urls import path
 
 from egarbage import views
 
-# The application urls in the /hello directory to be renamed in coming versions.
+# Some urls below needs to be modified
 urlpatterns = [
     path('', views.about, name='about'),
     path('about/', views.about, name='about'),
