@@ -44,11 +44,14 @@ class RegisterForm(forms.ModelForm):
     e_waste_type = forms.ChoiceField(choices=choices, label='E-waste Type',
                                      widget=forms.Select(attrs={'class': 'form-control form-control-md'}))
     district = forms.ChoiceField(choices=district, label='District',
-                                 widget=forms.Select(attrs={'class': 'form-control form-control-md'}))
+                                 widget=forms.Select(attrs={'class': 'form-control form-control-md',
+                                                            'onchange': "getSectors()"}))
     sector = forms.ChoiceField(choices=sector, label='Sector',
-                               widget=forms.Select(attrs={'class': 'form-control form-control-md'}))
+                               widget=forms.Select(attrs={'class': 'form-control form-control-md',
+                                                          'onchange': "getCells()"}))
     cell = forms.ChoiceField(choices=cell, label='Cell',
-                             widget=forms.Select(attrs={'class': 'form-control form-control-md'}))
+                             widget=forms.Select(attrs={'class': 'form-control form-control-md',
+                                                        'onchange': "getVillages()"}))
     village = forms.ChoiceField(choices=village, label='Village',
                                 widget=forms.Select(attrs={'class': 'form-control form-control-md'}))
     street = forms.CharField(label='Street',

@@ -67,7 +67,12 @@ def load_sector(request):
     district = request.GET.get('district')
     rda_regions = RwandaRegions()
     sector = rda_regions.get_sectors_from_district(province, district)
-    return render(request, 'egarbage/register.html', {'sector': sector})
+    result_set = []
+    for s in sector:
+        result_set.append({'name': s})
+
+    return HttpResponse(simplejson.dumps(result_set), content_type='application/json')
+
 
 
 def load_cell(request):
@@ -76,7 +81,11 @@ def load_cell(request):
     sector = request.GET.get('sector')
     rda_regions = RwandaRegions()
     cell = rda_regions.get_cells_from_sector(province, district, sector)
-    return render(request, 'egarbage/register.html', {'cell': cell})
+    result_set = []
+    for c in cell:
+        result_set.append({'name': c})
+
+    return HttpResponse(simplejson.dumps(result_set), content_type='application/json')
 
 
 def load_village(request):
@@ -86,4 +95,8 @@ def load_village(request):
     cell = request.GET.get('cell')
     rda_regions = RwandaRegions()
     village = rda_regions.get_villages_from_cell(province, district, sector, cell)
-    return render(request, 'egarbage/register.html', {'village': village})
+    result_set = []
+    for v in village:
+        result_set.append({'name': v})
+
+    return HttpResponse(simplejson.dumps(result_set), content_type='application/json')
