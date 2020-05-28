@@ -12,6 +12,13 @@ class RegisterForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         self.fields['province'].queryset = Register.objects.none()
 
+        if 'province' in self.data:
+            try:
+                id = int(self.data.get('province'))
+                self.fields['district'].queryset = District.objects.filter(id=id).order_by('district')
+            except(ValueError, TypeError):
+                pass
+
     rda_regions = RwandaRegions()
     # rda_regions.get_all_regions()
     provinces_list = rda_regions.get_provinces()

@@ -1,7 +1,46 @@
 from django.core.validators import MinValueValidator
 from django.db import models
 
+
 # Create your models here.
+
+class Province(models.Model):
+    province = models.CharField(max_length=10)
+
+    def __str__(self):
+        return self.province
+
+
+class District(models.Model):
+    province = models.ForeignKey(Province, on_delete=models.CASCADE)
+    district = models.CharField(max_length=30)
+
+    def __str__(self):
+        return self.district
+
+
+class Sector(models.Model):
+    district = models.ForeignKey(District, on_delete=models.CASCADE)
+    sector = models.CharField(max_length=30)
+
+    def __str__(self):
+        return self.sector
+
+
+class Cell(models.Model):
+    sector = models.ForeignKey(Sector, on_delete=models.CASCADE)
+    cell = models.CharField(max_length=30)
+
+    def __str__(self):
+        return self.cell
+
+
+class Village(models.Model):
+    cell = models.ForeignKey(Cell, on_delete=models.CASCADE)
+    village = models.CharField(max_length=30)
+
+    def __str__(self):
+        return self.village
 
 
 class Register(models.Model):
@@ -19,15 +58,18 @@ class Register(models.Model):
 
     name = models.CharField(max_length=30)
     e_waste_type = models.CharField(max_length=30, choices=choices)
-    quantity = models.IntegerField(validators=[MinValueValidator(1)])
-    province = models.CharField(max_length=30)
-    district = models.CharField(max_length=30)
-    sector = models.CharField(max_length=30)
-    cell = models.CharField(max_length=30)
-    village = models.CharField(max_length=30)
+    province = models.ForeignKey(Province, on_delete=models.SET_NULL, null=True)
+    district = models.ForeignKey(District, on_delete=models.SET_NULL, null=True)
+    sector = models.ForeignKey(Province, on_delete=models.SET_NULL, null=True)
+    cell = models.ForeignKey(Province, on_delete=models.SET_NULL, null=True)
+    village = models.ForeignKey(Village, on_delete=models.CASCADE, null=True)
     street = models.CharField(max_length=50)
+    quantity = models.IntegerField(validators=[MinValueValidator(1)])
     collected = models.BooleanField(default=False)
     timestamp = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.name
 
     class Meta:
         verbose_name = 'Submitted'
