@@ -1,5 +1,5 @@
 from django import forms
-from .models import Register
+from .models import Register, District, Cell, Village, Sector
 from .regions import RwandaRegions
 
 
@@ -15,7 +15,36 @@ class RegisterForm(forms.ModelForm):
         if 'province' in self.data:
             try:
                 id = int(self.data.get('province'))
-                self.fields['district'].queryset = District.objects.filter(id=id).order_by('district')
+                self.fields['district'].queryset = District.objects.filter(province_id=id).order_by('district')
+            except(ValueError, TypeError):
+                pass
+        if 'province' and 'district' in self.data:
+            try:
+                province_id = int(self.data.get('province'))
+                district_id = int(self.data.get('district'))
+                self.fields['sector'].queryset = Sector.objects.filter(province_id=province_id, district_id=district_id).order_by('sector')
+            except(ValueError, TypeError):
+                pass
+
+        if 'province' and 'district' and 'sector' in self.data:
+            try:
+                province_id = int(self.data.get('province'))
+                district_id = int(self.data.get('district'))
+                sector_id = int(self.data.get('sector'))
+                self.fields['cell'].queryset = Cell.objects.filter(province_id=province_id, district_id=district_id,
+                                                                   sector_id=sector_id).order_by('sector')
+            except(ValueError, TypeError):
+                pass
+
+        if 'province' and 'district' and 'sector' and 'cell' in self.data:
+            try:
+                province_id = int(self.data.get('province'))
+                district_id = int(self.data.get('district'))
+                sector_id = int(self.data.get('sector'))
+                cell_id = int(self.data.get('cell'))
+                self.fields['village'].queryset = Village.objects.filter(province_id=province_id,
+                                                                         district_id=district_id, sector_id=sector_id,
+                                                                         cell_id=cell_id).order_by('sector')
             except(ValueError, TypeError):
                 pass
 
