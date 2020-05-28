@@ -1,7 +1,15 @@
+import json
+
 from egarbage.regions import RwandaRegions
 from .models import Province, District, Sector, Cell, Village
 
 regions = RwandaRegions()
+
+
+json_data = open('rwanda_regions.json').read()
+
+response = json.loads(json_data)
+
 
 # Save all Province to db
 provinces = regions.get_provinces()
