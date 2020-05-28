@@ -22,7 +22,8 @@ class RegisterForm(forms.ModelForm):
             try:
                 province_id = int(self.data.get('province'))
                 district_id = int(self.data.get('district'))
-                self.fields['sector'].queryset = Sector.objects.filter(province_id=province_id, district_id=district_id).order_by('sector')
+                self.fields['sector'].queryset = Sector.objects.filter(province_id=province_id,
+                                                                       district_id=district_id).order_by('sector')
             except(ValueError, TypeError):
                 pass
 
@@ -49,7 +50,6 @@ class RegisterForm(forms.ModelForm):
                 pass
 
     rda_regions = RwandaRegions()
-    # rda_regions.get_all_regions()
     provinces_list = rda_regions.get_provinces()
     provinces = [('', 'Choose...')]
     district = [('', 'Choose...')]
