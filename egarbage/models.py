@@ -12,7 +12,7 @@ class Province(models.Model):
 
 
 class District(models.Model):
-    province = models.ForeignKey(Province, on_delete=models.CASCADE)
+    province = models.ForeignKey(Province, on_delete=models.CASCADE, related_name='province')
     district = models.CharField(max_length=30)
 
     def __str__(self):
@@ -20,7 +20,7 @@ class District(models.Model):
 
 
 class Sector(models.Model):
-    district = models.ForeignKey(District, on_delete=models.CASCADE)
+    district = models.ForeignKey(District, on_delete=models.CASCADE, related_name='district')
     sector = models.CharField(max_length=30)
 
     def __str__(self):
@@ -28,7 +28,7 @@ class Sector(models.Model):
 
 
 class Cell(models.Model):
-    sector = models.ForeignKey(Sector, on_delete=models.CASCADE)
+    sector = models.ForeignKey(Sector, on_delete=models.CASCADE, related_name='sector')
     cell = models.CharField(max_length=30)
 
     def __str__(self):
@@ -36,7 +36,7 @@ class Cell(models.Model):
 
 
 class Village(models.Model):
-    cell = models.ForeignKey(Cell, on_delete=models.CASCADE)
+    cell = models.ForeignKey(Cell, on_delete=models.CASCADE, related_name='cell')
     village = models.CharField(max_length=30)
 
     def __str__(self):
