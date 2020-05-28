@@ -58,3 +58,4 @@ class RegisterForm(forms.ModelForm):
                              widget=forms.TextInput(attrs={'class': 'form-control form-control-md'}))
     quantity = forms.IntegerField(label='Quantity',
                                   widget=forms.NumberInput(attrs={'class': 'form-control form-control-md'}))
+

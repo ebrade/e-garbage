@@ -29,7 +29,7 @@ def register(request):
                 request.POST.get('e_waste_type') and request.POST.get('quantity'):
             reg = Register()
 
-            reg.name = request.POST.get('name')
+            reg.name = request.user.username
             reg.province = request.POST.get('province')
             reg.district = request.POST.get('district')
             reg.sector = request.POST.get('sector')
