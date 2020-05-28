@@ -11,7 +11,14 @@ from .forms import RegisterForm
 from .regions import RwandaRegions
 
 
+from .save_regions_to_db import save_prov_dis_to_db, save_sectors, save_cells, save_villages
+
+
 def about(request):
+    # save_prov_dis_to_db()
+    # save_sectors()
+    # save_cells()
+    # save_villages()
     return render(request, 'egarbage/about.html')
 
 

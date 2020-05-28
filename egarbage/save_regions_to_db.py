@@ -3,81 +3,84 @@ import json
 from egarbage.regions import RwandaRegions
 from .models import Province, District, Sector, Cell, Village
 
-regions = RwandaRegions()
+
+def save_prov_dis_to_db():
+    regions = RwandaRegions()
+
+    # Save all Province to db
+    provinces = regions.get_provinces()
+    for prov in provinces:
+        province = Province(province=prov)
+        province.save()
+
+        districts = regions.get_districts_from_province(prov)
+
+        for dis in districts:
+            district = District(province=province, district=dis)
+            district.save()
 
 
-json_data = open('rwanda_regions.json').read()
+def save_sectors():
+    regions = RwandaRegions()
+    dis_instances = District.objects.all()
+    num = 0
+    instances = []
+    for dis_instance in dis_instances:
+        prov = dis_instance.province.province
+        dis = dis_instance.district
+        all_sectors = regions.get_sectors_from_district(prov, dis)
 
-response = json.loads(json_data)
+        for sector in all_sectors:
+            num = num + 1
+            c = Sector(district=dis_instance, sector=sector)
+            instances.append(c)
 
-
-# Save all Province to db
-provinces = regions.get_provinces()
-for prov in provinces:
-    province = Province(province=prov)
-    province.save()
-
-"""
-json_data = open('core/static/core/data/drug1.json').read()
-
-response = json.loads(json_data)
-a = 0
-b = 0
-
-for data in response['results']:
-    generic_name = data['openfda'].get('generic_name')
-    brand_name = data['openfda'].get('brand_name')
-    substance_name = data['openfda'].get('substance_name')
-    spl_product_data_elements = data.get('spl_product_data_elements')
-    drug_interactions = data.get('drug_interactions')
-    when_using = data.get('when_using')
-    pregnancy_or_breast_feeding = data.get('pregnancy_or_breast_feeding')
-    information_for_patients = data.get('information_for_patients')
-    warnings_and_cautions = data.get('warnings_and_cautions')
-    purpose = data.get('purpose')
-    dosage_and_administration = data.get('dosage_and_administration')
-
-    if generic_name is None:
-        generic_name = []
-    if brand_name is None:
-        brand_name = []
-    if substance_name is None:
-        substance_name = []
-    if spl_product_data_elements is None:
-        spl_product_data_elements = []
-    if drug_interactions is None:
-        drug_interactions = []
-    if when_using is None:
-        when_using = []
-    if pregnancy_or_breast_feeding is None:
-        pregnancy_or_breast_feeding = []
-    if information_for_patients is None:
-        information_for_patients = []
-    if warnings_and_cautions is None:
-        warnings_and_cautions = []
-    if purpose is None:
-        purpose = []
-    if dosage_and_administration is None:
-        dosage_and_administration = []
-
-    try:
-        medicine = Medicine(generic_name=generic_name,
-                            brand_name=brand_name,
-                            substance_name=substance_name,
-                            spl_product_data_elements=spl_product_data_elements,
-                            dosage_and_administration=dosage_and_administration,
-                            drug_interactions=drug_interactions,
-                            when_using=when_using,
-                            pregnancy_or_breast_feeding=pregnancy_or_breast_feeding,
-                            information_for_patients=information_for_patients,
-                            warnings_and_cautions=warnings_and_cautions,
-                            purpose=purpose
-                            )
-        medicine.save()
+        if num == 1000:
+            Sector.objects.bulk_create(instances)
+            num = 0
+    Sector.objects.bulk_create(instances)
 
 
-    except IntegrityError as e:
+def save_cells():
+    regions = RwandaRegions()
+    sector_instances = Sector.objects.all()
+    num = 0
+    instances = []
+    for sect in sector_instances:
+        prov = sect.district.province.province
+        dis = sect.district.district
+        sec = sect.sector
+        all_cells = regions.get_cells_from_sector(prov, dis, sec)
 
-        print(e)
-        pass
-    """
+        for cell in all_cells:
+            num = num + 1
+            c = Cell(sector=sect, cell=cell)
+            instances.append(c)
+
+        if num == 1000:
+            Cell.objects.bulk_create(instances)
+            num = 0
+    Cell.objects.bulk_create(instances)
+
+
+def save_villages():
+    regions = RwandaRegions()
+    cell_instances = Cell.objects.all()
+    num = 0
+    instances = []
+    for cell_instance in cell_instances:
+        prov = cell_instance.sector.district.province.province
+        dis = cell_instance.sector.district.district
+        sec = cell_instance.sector.sector
+        cell = cell_instance.cell
+        all_villages = regions.get_villages_from_cell(prov, dis, sec, cell)
+
+        for village in all_villages:
+            num = num + 1
+            c = Village(cell=cell_instance, village=village)
+            instances.append(c)
+
+        if num == 1000:
+            Village.objects.bulk_create(instances)
+            num = 0
+    Village.objects.bulk_create(instances)

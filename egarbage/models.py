@@ -12,7 +12,7 @@ class Province(models.Model):
 
 
 class District(models.Model):
-    province = models.ForeignKey(Province, on_delete=models.CASCADE, related_name='province')
+    province = models.ForeignKey(Province, on_delete=models.CASCADE)
     district = models.CharField(max_length=30)
 
     def __str__(self):
@@ -20,7 +20,7 @@ class District(models.Model):
 
 
 class Sector(models.Model):
-    district = models.ForeignKey(District, on_delete=models.CASCADE, related_name='district')
+    district = models.ForeignKey(District, on_delete=models.CASCADE)
     sector = models.CharField(max_length=30)
 
     def __str__(self):
@@ -28,7 +28,7 @@ class Sector(models.Model):
 
 
 class Cell(models.Model):
-    sector = models.ForeignKey(Sector, on_delete=models.CASCADE, related_name='sector')
+    sector = models.ForeignKey(Sector, on_delete=models.CASCADE)
     cell = models.CharField(max_length=30)
 
     def __str__(self):
@@ -36,7 +36,7 @@ class Cell(models.Model):
 
 
 class Village(models.Model):
-    cell = models.ForeignKey(Cell, on_delete=models.CASCADE, related_name='cell')
+    cell = models.ForeignKey(Cell, on_delete=models.CASCADE)
     village = models.CharField(max_length=30)
 
     def __str__(self):
@@ -58,10 +58,10 @@ class Register(models.Model):
 
     name = models.CharField(max_length=30)
     e_waste_type = models.CharField(max_length=30, choices=choices)
-    province = models.ForeignKey(Province, on_delete=models.SET_NULL, null=True)
-    district = models.ForeignKey(District, on_delete=models.SET_NULL, null=True)
-    sector = models.ForeignKey(Province, on_delete=models.SET_NULL, null=True)
-    cell = models.ForeignKey(Province, on_delete=models.SET_NULL, null=True)
+    province = models.ForeignKey(Province, on_delete=models.SET_NULL, null=True, related_name='provinces')
+    district = models.ForeignKey(District, on_delete=models.SET_NULL, null=True, related_name='districts')
+    sector = models.ForeignKey(Province, on_delete=models.SET_NULL, null=True, related_name='sectors')
+    cell = models.ForeignKey(Province, on_delete=models.SET_NULL, null=True, related_name='cells')
     village = models.ForeignKey(Village, on_delete=models.CASCADE, null=True)
     street = models.CharField(max_length=50)
     quantity = models.IntegerField(validators=[MinValueValidator(1)])

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from egarbage.models import Register
+from egarbage.models import Register, Province, District, Sector, Cell, Village
 
 # Register your models here.
 
@@ -24,3 +24,38 @@ class RegisterAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Register, RegisterAdmin)
+
+
+class ProvinceAdmin(admin.ModelAdmin):
+    list_display = ['province']
+
+
+admin.site.register(Province, ProvinceAdmin)
+
+
+class DistrictAdmin(admin.ModelAdmin):
+    list_display = ['province', 'district']
+
+
+admin.site.register(District, DistrictAdmin)
+
+
+class SectorAdmin(admin.ModelAdmin):
+    list_display = ['district', 'sector']
+
+
+admin.site.register(Sector, SectorAdmin)
+
+
+class CellAdmin(admin.ModelAdmin):
+    list_display = ['sector', 'cell']
+
+
+admin.site.register(Cell, CellAdmin)
+
+
+class VillageAdmin(admin.ModelAdmin):
+    list_display = ['cell', 'village']
+
+
+admin.site.register(Village, VillageAdmin)
