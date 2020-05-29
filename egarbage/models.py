@@ -58,13 +58,13 @@ class Register(models.Model):
 
     name = models.CharField(max_length=30)
     e_waste_type = models.CharField(max_length=30, choices=choices)
+    quantity = models.IntegerField(validators=[MinValueValidator(1)])
     province = models.ForeignKey(Province, on_delete=models.SET_NULL, null=True, related_name='provinces')
     district = models.ForeignKey(District, on_delete=models.SET_NULL, null=True, related_name='districts')
     sector = models.ForeignKey(Province, on_delete=models.SET_NULL, null=True, related_name='sectors')
     cell = models.ForeignKey(Province, on_delete=models.SET_NULL, null=True, related_name='cells')
     village = models.ForeignKey(Village, on_delete=models.CASCADE, null=True)
     street = models.CharField(max_length=50)
-    quantity = models.IntegerField(validators=[MinValueValidator(1)])
     collected = models.BooleanField(default=False)
     timestamp = models.DateTimeField(auto_now_add=True)
 

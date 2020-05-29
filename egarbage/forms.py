@@ -10,7 +10,10 @@ class RegisterForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['province'].queryset = Register.objects.none()
+        self.fields['district'].queryset = District.objects.none()
+        self.fields['sector'].queryset = Sector.objects.none()
+        self.fields['cell'].queryset = Cell.objects.none()
+        self.fields['village'].queryset = Village.objects.none()
 
         if 'province' in self.data:
             try:
@@ -49,18 +52,6 @@ class RegisterForm(forms.ModelForm):
             except(ValueError, TypeError):
                 pass
 
-    rda_regions = RwandaRegions()
-    provinces_list = rda_regions.get_provinces()
-    provinces = [('', 'Choose...')]
-    district = [('', 'Choose...')]
-    sector = [('', 'Choose...')]
-    cell = [('', 'Choose...')]
-    village = [('', 'Choose...')]
-
-    for prov in provinces_list:
-        p = (prov, prov)
-        provinces.append(p)
-
     choices = (
         ('', 'Choose...'),
         ('Laptop', 'Laptop'),
@@ -74,24 +65,23 @@ class RegisterForm(forms.ModelForm):
         ('Cables', 'Cables')
     )
 
-    province = forms.ChoiceField(choices=provinces, label='Province',
-                                 widget=forms.Select(attrs={'class': 'form-control form-control-md',
-                                                            'onchange': "getDistricts()"}))
     e_waste_type = forms.ChoiceField(choices=choices, label='E-waste Type',
                                      widget=forms.Select(attrs={'class': 'form-control form-control-md'}))
-    district = forms.ChoiceField(choices=district, label='District',
-                                 widget=forms.Select(attrs={'class': 'form-control form-control-md',
-                                                            'onchange': "getSectors()"}))
-    sector = forms.ChoiceField(choices=sector, label='Sector',
-                               widget=forms.Select(attrs={'class': 'form-control form-control-md',
-                                                          'onchange': "getCells()"}))
-    cell = forms.ChoiceField(choices=cell, label='Cell',
-                             widget=forms.Select(attrs={'class': 'form-control form-control-md',
-                                                        'onchange': "getVillages()"}))
-    village = forms.ChoiceField(choices=village, label='Village',
-                                widget=forms.Select(attrs={'class': 'form-control form-control-md'}))
+    # province = forms.ChoiceField(choices=provinces, label='Province',
+    #                              widget=forms.Select(attrs={'class': 'form-control form-control-md',
+    #                                                         'onchange': "getDistricts()"}))
+    # district = forms.ChoiceField(choices=district, label='District',
+    #                              widget=forms.Select(attrs={'class': 'form-control form-control-md',
+    #                                                         'onchange': "getSectors()"}))
+    # sector = forms.ChoiceField(choices=sector, label='Sector',
+    #                            widget=forms.Select(attrs={'class': 'form-control form-control-md',
+    #                                                       'onchange': "getCells()"}))
+    # cell = forms.ChoiceField(choices=cell, label='Cell',
+    #                          widget=forms.Select(attrs={'class': 'form-control form-control-md',
+    #                                                     'onchange': "getVillages()"}))
+    # village = forms.ChoiceField(choices=village, label='Village',
+    #                             widget=forms.Select(attrs={'class': 'form-control form-control-md'}))
     street = forms.CharField(label='Street',
                              widget=forms.TextInput(attrs={'class': 'form-control form-control-md'}))
-    quantity = forms.IntegerField(label='Quantity',
-                                  widget=forms.NumberInput(attrs={'class': 'form-control form-control-md'}))
-
+    # quantity = forms.IntegerField(label='Quantity',
+    #                               widget=forms.NumberInput(attrs={'class': 'form-control form-control-md'}))

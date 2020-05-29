@@ -31,13 +31,11 @@
 
 
             $.ajax({
-                url: "{% url 'load_district' %}",
+                url: url,
                 data: {'province': optionSelected},
                 success: function (data) {
 
-                    $.each(data, function (index, value) {
-                        $('#id_district').append('<option value=' + value.name + ' placeholder="Choose...">' + value.name + '</option>');
-                    })
+                    $("#id_district").html(data);
                 }
             })
         }
@@ -66,56 +64,60 @@
             })
         }
 
-        function getCells() {
-            $("#id_cell").empty();
-            $("#id_village").empty();
 
-            const provinceSelected = $('#id_province').find(":selected").text();
-            const districtSelected = $('#id_district').find(":selected").text();
-            const sectorSelected = $('#id_sector').find(":selected").text();
+            function getCells() {
+                $("#id_cell").empty();
+                $("#id_village").empty();
+
+                const provinceSelected = $('#id_province').find(":selected").text();
+                const districtSelected = $('#id_district').find(":selected").text();
+                const sectorSelected = $('#id_sector').find(":selected").text();
 
 
-            $.ajax({
-                url: "{% url 'load_cell' %}",
-                data: {
-                    'province': provinceSelected,
-                    'district': districtSelected,
-                    'sector': sectorSelected
-                },
-                success: function (data) {
+                $.ajax({
+                    url: "{% url 'load_cell' %}",
+                    data: {
+                        'province': provinceSelected,
+                        'district': districtSelected,
+                        'sector': sectorSelected
+                    },
+                    success: function (data) {
 
-                    $.each(data, function (index, value) {
-                        $('#id_cell').append('<option value=' + value.name + ' placeholder="Choose...">' + value.name + '</option>');
+                        $.each(data, function (index, value) {
+                            $('#id_cell').append('<option value=' + value.name + ' placeholder="Choose...">' + value.name + '</option>');
+                        })
+                    }
+                })
+            }
+
+
+                function getVillages() {
+                    $("#id_village").empty();
+
+                    const provinceSelected = $('#id_province').find(":selected").text();
+                    const districtSelected = $('#id_district').find(":selected").text();
+                    const sectorSelected = $('#id_sector').find(":selected").text();
+                    const cellSelected = $('#id_cell').find(":selected").text();
+
+
+                    $.ajax({
+                        url: "{% url 'load_village' %}",
+                        data: {
+                            'province': provinceSelected,
+                            'district': districtSelected,
+                            'sector': sectorSelected,
+                            'cell': cellSelected
+                        },
+                        success: function (data) {
+
+                            $.each(data, function (index, value) {
+                                $('#id_village').append('<option value=' + value.name + ' placeholder="Choose...">' + value.name + '</option>');
+                            })
+                        }
                     })
                 }
-            })
-        }
-
-        function getVillages() {
-            $("#id_village").empty();
-
-            const provinceSelected = $('#id_province').find(":selected").text();
-            const districtSelected = $('#id_district').find(":selected").text();
-            const sectorSelected = $('#id_sector').find(":selected").text();
-            const cellSelected = $('#id_cell').find(":selected").text();
 
 
-            $.ajax({
-                url: "{% url 'load_village' %}",
-                data: {
-                    'province': provinceSelected,
-                    'district': districtSelected,
-                    'sector': sectorSelected,
-                    'cell': cellSelected
-                },
-                success: function (data) {
-
-                    $.each(data, function (index, value) {
-                        $('#id_village').append('<option value=' + value.name + ' placeholder="Choose...">' + value.name + '</option>');
-                    })
-                }
-            })
-        }
     </script>
 
 </head>

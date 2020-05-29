@@ -6,7 +6,7 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
 
-from egarbage.models import Register
+from egarbage.models import Register, District
 from .forms import RegisterForm
 from .regions import RwandaRegions
 
@@ -61,13 +61,15 @@ class RegisterItem(CreateView):
 
 def load_district(request):
     province = request.GET.get('province')
-    rda_regions = RwandaRegions()
-    district = rda_regions.get_districts_from_province(province)
-    result_set = []
-    for dis in district:
-        result_set.append({'name': dis})
-
-    return HttpResponse(simplejson.dumps(result_set), content_type='application/json')
+    # rda_regions = RwandaRegions()
+    # district = rda_regions.get_districts_from_province(province)
+    # result_set = []
+    # for dis in district:
+    #     result_set.append({'name': dis})
+    #
+    # return HttpResponse(simplejson.dumps(result_set), content_type='application/json')
+    districts = District.objects.filter(province_id=province).order_by('district')
+    return render(request, 'egarbage/districts_list.html', {'districts': districts})
 
 
 def load_sector(request):
