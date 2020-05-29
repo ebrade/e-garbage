@@ -9,7 +9,7 @@ class RegisterForm(forms.ModelForm):
         exclude = {'timestamp', 'name', 'collected'}
 
         widgets = {
-            'quantity': forms.NumberInput(attrs={'class': 'form-control form-control-md'}),
+            'quantity': forms.NumberInput(attrs={'min': 1, 'class': 'form-control form-control-md'}),
             'province': forms.Select(attrs={'class': 'form-control form-control-md'}),
             'district': forms.Select(attrs={'class': 'form-control form-control-md'}),
             'sector': forms.Select(attrs={'class': 'form-control form-control-md'}),
@@ -68,9 +68,3 @@ class RegisterForm(forms.ModelForm):
                                      widget=forms.Select(attrs={'class': 'form-control form-control-md'}))
     street = forms.CharField(label='Street',
                              widget=forms.TextInput(attrs={'class': 'form-control form-control-md'}))
-
-    def clean_quantity(self):
-        quantity = self.cleaned_data['quantity']
-        if quantity < 1:
-            self.add_error("quantity", "Quantity must be greater than 0.")
-        return quantity
