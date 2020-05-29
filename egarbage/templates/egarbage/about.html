@@ -1,5 +1,28 @@
 {% extends "egarbage/layout.html" %} {% block title %} About {% endblock %} {% block content %}
 {% load static %}
+<div id="demo" class="carousel slide" data-ride="carousel">
+
+    <!-- Indicators -->
+    <ul class="carousel-indicators">
+        <li data-target="#demo" data-slide-to="0" class="active"></li>
+    </ul>
+
+    <!-- The slideshow -->
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="{% static 'egarbage/images/ew.jpg' %} " alt="E-waste">
+        </div>
+    </div>
+
+    <!-- Left and right controls -->
+    <a class="carousel-control-prev" href="#demo" data-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+    </a>
+    <a class="carousel-control-next" href="#demo" data-slide="next">
+        <span class="carousel-control-next-icon"></span>
+    </a>
+
+</div>
 <div>&nbsp;</div>
 <div>&nbsp;</div>
 
@@ -12,7 +35,7 @@
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto deleniti ea modi molestiae odit optio
         repellendus? Ab amet, eaque earum illo in inventore minus nihil nostrum obcaecati qui saepe voluptatum.
         Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quidem eos delectus ducimus magnam obcaecati maiores
-        dolor. Odit autem error ratione consequuntur aut cupiditate? Ratione, quam sit! Atque cumque ab totam.  
+        dolor. Odit autem error ratione consequuntur aut cupiditate? Ratione, quam sit! Atque cumque ab totam.
     </p>
 </div>
 
@@ -53,5 +76,10 @@
         </div>
     </div>
 </div>
-
+<div>&nbsp;</div>
+<div>&nbsp;</div>
+<div>
+    <h1 class="text-center">Contact Us</h1>
+    <p class="text-center">The form goes here</p>
+</div>
 {% endblock %}
