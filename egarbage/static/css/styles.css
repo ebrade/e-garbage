@@ -1,0 +1,9 @@
+@font-face {
+    font-family: "Inconsolata";
+    src: url(egarbage/static/egarbage/fonts/Inconsolata.ttf);
+  }
+
+html,
+body{
+    font-family: "Inconsolata", monospace;
+}
