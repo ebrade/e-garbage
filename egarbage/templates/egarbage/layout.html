@@ -1,25 +1,28 @@
 <!doctype html>
 <html lang="en">
+
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    {% block stylesheets %}{% load static %}
-        <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-              integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-              crossorigin="anonymous">
+    <link rel="shortcut icon" type="image/png" href="/favicon.png"/>
+    <link rel="shortcut icon" type="image/png" href="http://example.com/favicon.png"/>
+    <title>{% block title %}{% endblock %}| e-garbage</title>
+    {% block stylesheets %}
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'egarbage/css/styles.css' %}">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inconsolata&family=Open+Sans&display=swap');
 
-        <title>{% block title %}{% endblock %}| e-garbage</title>
-        <link rel="shortcut icon" type="image/png" href="/favicon.png"/>
-
-        <link rel="shortcut icon" type="image/png" href="http://example.com/favicon.png"/>
+        body {
+            font-family: 'Open Sans', sans-serif;
+        }
+    </style>
 
     {% endblock stylesheets %}
 
-    {#We to move this thingy in another file it makes everything look weird#}
-    {#And also recheck what is worng because sometimes it requires to select a location two time#}
-    {#inorder for the next field to autocomplete#}
     <script type="text/javascript">
         function getDistricts() {
             $("#id_district").empty();
@@ -31,8 +34,10 @@
 
 
             $.ajax({
-                url: url,
+
+                url: "{% url 'load_district' %}",
                 data: {'province': optionSelected},
+
                 success: function (data) {
 
                     $("#id_district").html(data);
@@ -65,62 +70,63 @@
         }
 
 
-            function getCells() {
-                $("#id_cell").empty();
-                $("#id_village").empty();
+        function getCells() {
+            $("#id_cell").empty();
+            $("#id_village").empty();
 
-                const provinceSelected = $('#id_province').find(":selected").text();
-                const districtSelected = $('#id_district').find(":selected").text();
-                const sectorSelected = $('#id_sector').find(":selected").text();
-
-
-                $.ajax({
-                    url: "{% url 'load_cell' %}",
-                    data: {
-                        'province': provinceSelected,
-                        'district': districtSelected,
-                        'sector': sectorSelected
-                    },
-                    success: function (data) {
-
-                        $.each(data, function (index, value) {
-                            $('#id_cell').append('<option value=' + value.name + ' placeholder="Choose...">' + value.name + '</option>');
-                        })
-                    }
-                })
-            }
+            const provinceSelected = $('#id_province').find(":selected").text();
+            const districtSelected = $('#id_district').find(":selected").text();
+            const sectorSelected = $('#id_sector').find(":selected").text();
 
 
-                function getVillages() {
-                    $("#id_village").empty();
+            $.ajax({
+                url: "{% url 'load_cell' %}",
+                data: {
+                    'province': provinceSelected,
+                    'district': districtSelected,
+                    'sector': sectorSelected
+                },
+                success: function (data) {
 
-                    const provinceSelected = $('#id_province').find(":selected").text();
-                    const districtSelected = $('#id_district').find(":selected").text();
-                    const sectorSelected = $('#id_sector').find(":selected").text();
-                    const cellSelected = $('#id_cell').find(":selected").text();
-
-
-                    $.ajax({
-                        url: "{% url 'load_village' %}",
-                        data: {
-                            'province': provinceSelected,
-                            'district': districtSelected,
-                            'sector': sectorSelected,
-                            'cell': cellSelected
-                        },
-                        success: function (data) {
-
-                            $.each(data, function (index, value) {
-                                $('#id_village').append('<option value=' + value.name + ' placeholder="Choose...">' + value.name + '</option>');
-                            })
-                        }
+                    $.each(data, function (index, value) {
+                        $('#id_cell').append('<option value=' + value.name + ' placeholder="Choose...">' + value.name + '</option>');
                     })
                 }
+            })
+        }
+
+
+        function getVillages() {
+            $("#id_village").empty();
+
+            const provinceSelected = $('#id_province').find(":selected").text();
+            const districtSelected = $('#id_district').find(":selected").text();
+            const sectorSelected = $('#id_sector').find(":selected").text();
+            const cellSelected = $('#id_cell').find(":selected").text();
+
+
+            $.ajax({
+                url: "{% url 'load_village' %}",
+                data: {
+                    'province': provinceSelected,
+                    'district': districtSelected,
+                    'sector': sectorSelected,
+                    'cell': cellSelected
+                },
+                success: function (data) {
+
+                    $.each(data, function (index, value) {
+                        $('#id_village').append('<option value=' + value.name + ' placeholder="Choose...">' + value.name + '</option>');
+                    })
+                }
+            })
+        }
 
 
     </script>
 
 </head>
+
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="#">E-garbage</a>
@@ -141,8 +147,8 @@
                 <a class="nav-link" href="{% url 'history' %}">History</a>
             </li>
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-                   aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     User: {{ user.get_username }}
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -155,21 +161,61 @@
         </ul>
     </div>
 </nav>
-<div class="container">
+<div id="demo" class="carousel slide" data-ride="carousel">
 
+    <!-- Indicators -->
+    <ul class="carousel-indicators">
+        <li data-target="#demo" data-slide-to="0" class="active"></li>
+    </ul>
+
+    <!-- The slideshow -->
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="{% static 'egarbage/images/ew2w.jpg' %} " class="img-responsive" alt="E-waste">
+        </div>
+    </div>
+
+    <!-- Left and right controls -->
+    <a class="carousel-control-prev" href="#demo" data-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+    </a>
+    <a class="carousel-control-next" href="#demo" data-slide="next">
+        <span class="carousel-control-next-icon"></span>
+    </a>
+
+</div>
+<div class="container">
     {% block content %} {% endblock %}
+    <div class="row">&nbsp;</div>
+    <div class="row">&nbsp;</div>
+    <div class="row">&nbsp;</div>
+</div>
+
+<div class="footer-div">
+    <footer class="footer text-center">
+        <hr>
+        <div class="">
+                <span>Copyright ©
+                    <script>
+                        document.write(new Date().getFullYear().toString())
+                    </script> E-garbage</span>
+        </div>
+    </footer>
+
 </div>
 
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-{# <script src="{% static 'egarbage/js/choices.js' %}"></script> #}
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
 {#{% block extra_js %}#}
-{#    <script src="{% static 'egarbage/js/choices.js' %}"></script>#}
+{#
+<script src="{% static 'egarbage/js/choices.js' %}"></script>
+#}
 {#{% endblock %}#}
 
 </body>
+
 </html>

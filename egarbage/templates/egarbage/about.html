@@ -1,28 +1,63 @@
 {% extends "egarbage/layout.html" %} {% block title %} About {% endblock %} {% block content %}
-    <div>&nbsp;</div>
-    <div>&nbsp;</div>
-    <p>
+{% load static %}
+
+<div>&nbsp;</div>
+<div>&nbsp;</div>
+
+<h1 class="text-center">Our mission</h1>
+<div class="row">&nbsp;</div>
+
+<div class="row">
+
+    <p class="text-center">
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto deleniti ea modi molestiae odit optio
         repellendus? Ab amet, eaque earum illo in inventore minus nihil nostrum obcaecati qui saepe voluptatum.
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quidem eos delectus ducimus magnam obcaecati maiores
+        dolor. Odit autem error ratione consequuntur aut cupiditate? Ratione, quam sit! Atque cumque ab totam.
     </p>
-    <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab dignissimos distinctio fugit ipsa laborum officia
-        pariatur praesentium, saepe ut velit! Adipisci cupiditate esse eum excepturi expedita minus odio voluptates
-        voluptatibus.
-    </p>
-    <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad nesciunt nulla numquam odit officiis? Dicta dolore
-        ipsam iure provident rerum. Accusamus dicta dignissimos et ex ipsam nulla, obcaecati velit voluptatem!
-    </p>
-    <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi aperiam deserunt fugit molestiae ratione sequi,
-        ut! Blanditiis enim fugiat impedit ipsam, ipsum, maxime minus quibusdam rerum sapiente suscipit velit voluptate?
-    </p>
-    <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque labore maxime optio perspiciatis! Consequuntur
-        nesciunt nihil obcaecati odio quo totam! Consequuntur dolor impedit quisquam saepe sit. Dolorum explicabo nobis
-        quasi.
-    </p>
+</div>
 
+<div class="row">&nbsp;</div>
 
+<h1 class="text-center">The team</h1>
+<div class="row">
+    <!-- <div class="col-sm"> -->
+    <div class="card col-sm" style="width: 18rem;">
+        <img class="card-img-top" src="{% static 'egarbage/images/index.jpeg' %}" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title text-center">MU</h5>
+            <p class="card-text text-justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel doloremque
+                consequuntur sapiente maxime odit ducimus ipsum dolorum, exercitationem doloribus quasi blanditiis eum
+                deserunt, optio corporis suscipit. Dignissimos consequatur blanditiis porro!</p>
+            <!-- </div> -->
+        </div>
+    </div>
+
+    <div class="card col-sm" style="width: 18rem;">
+        <img class="card-img-top" src="{% static 'egarbage/images/index.jpeg' %}" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title text-center">MX</h5>
+            <p class="card-text text-justify">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam alias
+                quibusdam architecto ut consectetur nam quaerat minima, ratione ea expedita? Reprehenderit dolorem,
+                consequatur temporibus officiis voluptatem praesentium. Tempora, asperiores quidem?</p>
+
+        </div>
+    </div>
+
+    <div class="card col-sm" style="width: 18rem;">
+        <img class="card-img-top" src="{% static 'egarbage/images/index.jpeg' %}" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title text-center">MM</h5>
+            <p class="card-text text-justify">Lorem ipsum dolor sit amet consectetur adipisicing elit. Non sit harum
+                nisi maxime inventore doloribus quo voluptate ipsa. Eaque in, adipisci sed cum veritatis deserunt rem
+                officia dolorem eum sit!</p>
+        </div>
+    </div>
+</div>
+<div>&nbsp;</div>
+<div>&nbsp;</div>
+<div>
+    <h1 class="text-center">Contact Us</h1>
+    <p class="text-center">The form goes here</p>
+</div>
 {% endblock %}
