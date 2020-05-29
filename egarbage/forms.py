@@ -8,6 +8,15 @@ class RegisterForm(forms.ModelForm):
         model = Register
         exclude = {'timestamp', 'name', 'collected'}
 
+        widgets = {
+            'quantity': forms.NumberInput(attrs={'class': 'form-control form-control-md'}),
+            'province': forms.Select(attrs={'class': 'form-control form-control-md'}),
+            'district': forms.Select(attrs={'class': 'form-control form-control-md'}),
+            'sector': forms.Select(attrs={'class': 'form-control form-control-md'}),
+            'cell': forms.Select(attrs={'class': 'form-control form-control-md'}),
+            'village': forms.Select(attrs={'class': 'form-control form-control-md'})
+        }
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['district'].queryset = District.objects.none()
@@ -23,32 +32,22 @@ class RegisterForm(forms.ModelForm):
                 pass
         if 'province' and 'district' in self.data:
             try:
-                province_id = int(self.data.get('province'))
                 district_id = int(self.data.get('district'))
-                self.fields['sector'].queryset = Sector.objects.filter(province_id=province_id,
-                                                                       district_id=district_id).order_by('sector')
+                self.fields['sector'].queryset = Sector.objects.filter(district_id=district_id).order_by('sector')
             except(ValueError, TypeError):
                 pass
 
         if 'province' and 'district' and 'sector' in self.data:
             try:
-                province_id = int(self.data.get('province'))
-                district_id = int(self.data.get('district'))
                 sector_id = int(self.data.get('sector'))
-                self.fields['cell'].queryset = Cell.objects.filter(province_id=province_id, district_id=district_id,
-                                                                   sector_id=sector_id).order_by('sector')
+                self.fields['cell'].queryset = Cell.objects.filter(sector_id=sector_id).order_by('sector')
             except(ValueError, TypeError):
                 pass
 
         if 'province' and 'district' and 'sector' and 'cell' in self.data:
             try:
-                province_id = int(self.data.get('province'))
-                district_id = int(self.data.get('district'))
-                sector_id = int(self.data.get('sector'))
                 cell_id = int(self.data.get('cell'))
-                self.fields['village'].queryset = Village.objects.filter(province_id=province_id,
-                                                                         district_id=district_id, sector_id=sector_id,
-                                                                         cell_id=cell_id).order_by('sector')
+                self.fields['village'].queryset = Village.objects.filter(cell_id=cell_id).order_by('sector')
             except(ValueError, TypeError):
                 pass
 
@@ -67,21 +66,11 @@ class RegisterForm(forms.ModelForm):
 
     e_waste_type = forms.ChoiceField(choices=choices, label='E-waste Type',
                                      widget=forms.Select(attrs={'class': 'form-control form-control-md'}))
-    # province = forms.ChoiceField(choices=provinces, label='Province',
-    #                              widget=forms.Select(attrs={'class': 'form-control form-control-md',
-    #                                                         'onchange': "getDistricts()"}))
-    # district = forms.ChoiceField(choices=district, label='District',
-    #                              widget=forms.Select(attrs={'class': 'form-control form-control-md',
-    #                                                         'onchange': "getSectors()"}))
-    # sector = forms.ChoiceField(choices=sector, label='Sector',
-    #                            widget=forms.Select(attrs={'class': 'form-control form-control-md',
-    #                                                       'onchange': "getCells()"}))
-    # cell = forms.ChoiceField(choices=cell, label='Cell',
-    #                          widget=forms.Select(attrs={'class': 'form-control form-control-md',
-    #                                                     'onchange': "getVillages()"}))
-    # village = forms.ChoiceField(choices=village, label='Village',
-    #                             widget=forms.Select(attrs={'class': 'form-control form-control-md'}))
     street = forms.CharField(label='Street',
                              widget=forms.TextInput(attrs={'class': 'form-control form-control-md'}))
-    # quantity = forms.IntegerField(label='Quantity',
-    #                               widget=forms.NumberInput(attrs={'class': 'form-control form-control-md'}))
+
+    def clean_quantity(self):
+        quantity = self.cleaned_data['quantity']
+        if quantity < 1:
+            self.add_error("quantity", "Quantity must be greater than 0.")
+        return quantity

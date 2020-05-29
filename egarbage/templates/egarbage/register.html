@@ -2,13 +2,97 @@
     <div>&nbsp;</div>
     <div>&nbsp;</div>
     {% load static %}
-    <form action="" method="post" id="registerForm" novalidate>
+
+    <form action="" method="post" id="registerForm" data-districts-url="{% url 'load_district' %}"
+          data-sectors-url="{% url 'load_sector' %}" data-cells-url="{% url 'load_cell' %}"
+          data-villages-url="{% url 'load_village' %}">
         {% csrf_token %}
         <table>
             {{ form.as_p }}
         </table>
         <button type="submit" class="btn btn-primary">Register</button>
     </form>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        $("#id_province").change(function () {
+
+            const url = $("#registerForm").attr("data-districts-url");
+            const optionSelected = $(this).val();
+
+
+            $.ajax({
+
+                url: url,
+                data: {'province': optionSelected},
+
+                success: function (data) {
+
+                    $("#id_district").html(data);
+                }
+            })
+        })
+
+        $("#id_district").change(function () {
+
+            const url = $("#registerForm").attr("data-sectors-url");
+            const districtSelected = $(this).val();
+
+
+            $.ajax({
+                url: url,
+                data: {
+                    'district': districtSelected
+                },
+                success: function (data) {
+
+                    $("#id_sector").html(data);
+                }
+            })
+        })
+
+
+        $("#id_sector").change(function () {
+
+            const url = $("#registerForm").attr("data-cells-url");
+            const sectorSelected = $(this).val();
+
+
+            $.ajax({
+                url: url,
+                data: {
+                    'sector': sectorSelected
+                },
+                success: function (data) {
+
+                    $("#id_cell").html(data);
+                }
+            })
+        })
+
+
+        $("#id_cell").change(function () {
+
+            const url = $("#registerForm").attr("data-villages-url");
+            const cellSelected = $(this).val()
+
+
+            $.ajax({
+                url: url,
+                data: {
+                    'cell': cellSelected
+                },
+                success: function (data) {
+
+                    $("#id_village").html(data);
+                }
+            })
+        })
+
+
+    </script>
+
 {% endblock %}
 
 
