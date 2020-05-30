@@ -72,5 +72,5 @@ class Register(models.Model):
         return self.name
 
     class Meta:
-        verbose_name = 'Submitted'
-        verbose_name_plural = 'Submitted'
+        verbose_name = 'E-Waste'
+        verbose_name_plural = 'E-Waste'
