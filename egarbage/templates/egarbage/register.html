@@ -2,8 +2,10 @@
     <div>&nbsp;</div>
     <div>&nbsp;</div>
     {% load static %}
-
-    <form action="" method="post" id="registerForm" data-districts-url="{% url 'load_district' %}"
+<h1 class="text-center">Submit E-Waste pickup </h1>
+    <div>&nbsp;</div>
+    <div>&nbsp;</div>
+    <form action="" method="post" class="mx-auto" id="registerForm" data-districts-url="{% url 'load_district' %}"
           data-sectors-url="{% url 'load_sector' %}" data-cells-url="{% url 'load_cell' %}"
           data-villages-url="{% url 'load_village' %}">
         {% csrf_token %}
