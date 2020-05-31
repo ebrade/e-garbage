@@ -5,6 +5,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import logout as django_logout
 
 from django.urls import reverse_lazy
+from django.utils import timezone
 from django.views.generic import CreateView
 
 from egarbage.models import Register, District, Sector, Cell, Village
@@ -34,7 +35,8 @@ def about(request):
 
 @login_required
 def history(request):
-    return render(request, 'egarbage/history.html')
+    history = Register.objects.filter(timestamp__lte <timezone.now()).order_by('published_date')
+    return render(request, 'egarbage/history.html', {})
 
 
 @login_required
