@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.core.validators import MinValueValidator
 from django.db import models
 
@@ -56,7 +57,7 @@ class Register(models.Model):
         ('Cables', 'Cables')
     )
 
-    name = models.CharField(max_length=30)
+    name = models.ForeignKey(User, on_delete=models.CASCADE)
     e_waste_type = models.CharField(max_length=30, choices=choices)
     quantity = models.IntegerField(validators=[MinValueValidator(1)])
     province = models.ForeignKey(Province, on_delete=models.SET_NULL, null=True, related_name='provinces')
