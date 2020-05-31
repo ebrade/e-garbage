@@ -81,3 +81,6 @@ class Contact(models.Model):
     email = models.EmailField()
     subject = models.CharField(max_length=100)
     message = models.TextField(max_length=600)
+
+    class Meta:
+        verbose_name = "Received messages"
