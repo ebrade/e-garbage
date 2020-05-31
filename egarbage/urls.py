@@ -3,7 +3,6 @@ from django.urls import path
 from egarbage import views
 from django.contrib.auth import views as auth_views
 
-
 urlpatterns = [
     path('', views.about, name='about'),
     path('about/', views.about, name='about'),
@@ -14,8 +13,10 @@ urlpatterns = [
     path('load_sector', views.load_sector, name='load_sector'),
     path('load_cell', views.load_cell, name='load_cell'),
     path('load_village', views.load_village, name='load_village'),
+
+    # Authentication related
     url(r'^signup/$', views.signup, name='signup'),
     path('logout', views.logout, name='logout'),
     url(r'^password/$', views.change_password, name='change_password'),
-]
 
+]
