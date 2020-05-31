@@ -4,23 +4,17 @@
     <br>
 
     <div class="row mx-auto history card">
-{#        {% if history %}#}
-{#            {% for his in history %}#}
-{#                <h2><a href="">{{ his.e_waste_type }}</a></h2>#}
-{#                <p>Timestamp: {{ his.timestamp }}</p>#}
-{#                <p>Quantity: {{ his.quantity|linebreaksbr }}</p>#}
-{#                </div>#}
-{#            {% endfor %}#}
-{#        {% else %}#}
-{#            You did not submit anything in the past.#}
-{#        {% endif %}#}
-    
-    {% for foo in hist %}
-        <h1>{{ foo.e_waste_type }}</h1>
-        <p>{{ foo.quantity }}</p>
-        <p>{{ foo.timestamp }}</p>
 
-    {% endfor %}
-    
+        {% if hist %}
+            {% for foo in hist %}
+                <h2>Item: {{ foo.e_waste_type }}</h2>
+                <p>Quantity: {{ foo.quantity }}</p>
+                <p>Time: {{ foo.timestamp|linebreaksbr }}</p>
+
+            {% endfor %}
+        {% else %}
+            You did not submit anything in the past.
+        {% endif %}
+
     </div>
 {% endblock %}

@@ -1,13 +1,8 @@
 from django.conf.urls import url
-from django.contrib.auth import logout
 from django.urls import path
-
-from core import settings
 from egarbage import views
 from django.contrib.auth import views as auth_views
 
-# Some urls below needs to be modified
-from egarbage.views import signup
 
 urlpatterns = [
     path('', views.about, name='about'),
