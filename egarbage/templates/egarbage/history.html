@@ -3,18 +3,18 @@
     <h2 class="text-center" xmlns="http://www.w3.org/1999/html">Please find below your submitted entries.</h2>
     <br>
 
-    <div class="row mx-auto history card">
+    <div class="card mx-auto history">
+        <div class="card-body">
+            {% if hist %}
+                {% for foo in hist %}
+                    <h3>Item: {{ foo.e_waste_type }}</h3>
+                    <p>Quantity: {{ foo.quantity }}</p>
+                    <p>Time: {{ foo.timestamp|date:"c"|linebreaksbr }}</p>
 
-        {% if hist %}
-            {% for foo in hist %}
-                <h2>Item: {{ foo.e_waste_type }}</h2>
-                <p>Quantity: {{ foo.quantity }}</p>
-                <p>Time: {{ foo.timestamp|linebreaksbr }}</p>
-
-            {% endfor %}
-        {% else %}
-            You did not submit anything in the past.
-        {% endif %}
-
+                {% endfor %}
+            {% else %}
+                You did not submit anything in the past.
+            {% endif %}
+        </div>
     </div>
 {% endblock %}
