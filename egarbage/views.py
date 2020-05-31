@@ -36,7 +36,7 @@ def about(request):
 @login_required
 def history(request):
     template_name = 'egarbage/history.html'
-    hist = Register.objects.filter(user=request.user)
+    hist = Register.objects.filter(name=request.user)
     args = {'hist': hist}
     return render(request, template_name, args)
 

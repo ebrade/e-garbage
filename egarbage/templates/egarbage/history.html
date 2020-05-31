@@ -14,11 +14,12 @@
                         <p>Time: {{ foo.timestamp|date:"D, d M Y"|linebreaksbr }}</p>
                         <hr>
                     {% endfor %}
-                    </ol>
+                </ol>
 
             {% else %}
                 You did not submit anything in the past.
             {% endif %}
         </div>
     </div>
+
 {% endblock %}
