@@ -22,5 +22,6 @@ urlpatterns = [
     url(r'^signup/$', views.signup, name='signup'),
     path('logout', views.logout, name='logout'),
     path('change-password/',
-         auth_views.PasswordChangeView.as_view(template_name='registration/change-password.html'), ),
+         auth_views.PasswordChangeView.as_view(template_name='registration/change-password.html'),),
 ]
+

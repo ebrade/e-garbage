@@ -1,17 +1,26 @@
 {% extends "egarbage/layout.html" %} {% block title %} History {% endblock %} {% block content %}
 
     <h2 class="text-center" xmlns="http://www.w3.org/1999/html">Please find below your submitted entries.</h2>
-    <div class="row mx-auto">
-        {% if history %}
-            {% for his in history %}
-                <p>
-                <h2><a href="">{{ his.e_waste_type }}</a></h2>
-                <p>Timestamp: {{ his.timestamp }}</p>
-                <p>Quantity: {{ his.quantity|linebreaksbr }}</p>
-                </div>
-            {% endfor %}
-        {% else %}
-            You did not submit anything in the past.
-        {% endif %}
+    <br>
+
+    <div class="row mx-auto history card">
+{#        {% if history %}#}
+{#            {% for his in history %}#}
+{#                <h2><a href="">{{ his.e_waste_type }}</a></h2>#}
+{#                <p>Timestamp: {{ his.timestamp }}</p>#}
+{#                <p>Quantity: {{ his.quantity|linebreaksbr }}</p>#}
+{#                </div>#}
+{#            {% endfor %}#}
+{#        {% else %}#}
+{#            You did not submit anything in the past.#}
+{#        {% endif %}#}
+    
+    {% for foo in hist %}
+        <h1>{{ foo.e_waste_type }}</h1>
+        <p>{{ foo.quantity }}</p>
+        <p>{{ foo.timestamp }}</p>
+
+    {% endfor %}
+    
     </div>
 {% endblock %}
