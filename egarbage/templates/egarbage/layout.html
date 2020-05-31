@@ -44,6 +44,8 @@
                         User: {{ user.get_username }}
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+
+                        <a class="dropdown-item" href="#">Welcome <b><u>{{ user.first_name }}</u></b></a>
                         <a class="dropdown-item" href="#">Profile</a>
                         <a class="dropdown-item" href="{% url 'password_change' %}">Change password</a>
                         <div class="dropdown-divider"></div>
@@ -81,6 +83,8 @@
 
 </div>
 <div class="container">
+    {#Add a little space between the coursel and the rest of the contents#}
+    <div>&nbsp;</div>
     {% block content %} {% endblock %}
     <div class="row">&nbsp;</div>
     <div class="row">&nbsp;</div>
