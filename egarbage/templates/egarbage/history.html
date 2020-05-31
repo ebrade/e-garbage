@@ -1,5 +1,5 @@
 {% extends "egarbage/layout.html" %} {% block title %} History {% endblock %} {% block content %}
-
+    <br>
     <h2 class="text-center" xmlns="http://www.w3.org/1999/html">Please find below your submitted entries.</h2>
     <br>
 
@@ -13,9 +13,8 @@
                         <p>Time: {{ foo.timestamp|date:"D, d M Y"|linebreaksbr }}</p>
                         <hr>
                     {% endfor %}
-
             {% else %}
-                You did not submit anything in the past.
+                You have no previous records.
             {% endif %}
         </div>
     </div>
