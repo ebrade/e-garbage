@@ -11,7 +11,7 @@
 
                         <li><h3> {{ foo.e_waste_type }}</h3></li><br>
                         <p>Quantity: {{ foo.quantity }}</p>
-                        <p>Time: {{ foo.timestamp|date:"c"|linebreaksbr }}</p>
+                        <p>Time: {{ foo.timestamp|date:"D, d M Y"|linebreaksbr }}</p>
                         <hr>
                     {% endfor %}
                     </ol>
