@@ -1,3 +1,4 @@
+from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 
@@ -5,7 +6,7 @@ from django.urls import reverse_lazy
 from django.views.generic import CreateView
 
 from egarbage.models import Register, District, Sector, Cell, Village
-from .forms import RegisterForm, ContactForm
+from .forms import RegisterForm, ContactForm, SignUpForm
 
 # The below ones are for single use.
 # from django.http import HttpResponse
@@ -18,6 +19,7 @@ def about(request):
     # save_sectors()
     # save_cells()
     # save_villages()
+
     if request.method == 'POST':
         form = ContactForm(request.POST)
         if form.is_valid():
@@ -34,7 +36,7 @@ def history(request):
 
 
 @login_required
-def register(request):
+def register_item(request):
     form = RegisterForm()
     if request.method == 'POST':
         form = RegisterForm(request.POST)
@@ -53,7 +55,7 @@ def register(request):
 @login_required
 class RegisterItem(CreateView):
     model = Register
-    success_url = reverse_lazy('register')
+    success_url = reverse_lazy('register_item')
 
 
 def load_district(request):
@@ -78,3 +80,18 @@ def load_village(request):
     cell = request.GET.get('cell')
     villages = Village.objects.filter(cell_id=cell).order_by('village')
     return render(request, 'egarbage/load_villages.html', {'villages': villages})
+
+
+def signup(request):
+    if request.method == 'POST':
+        form = SignUpForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=raw_password)
+            login(request, user)
+            return redirect('about')
+    else:
+        form = SignUpForm()
+    return render(request, 'egarbage/signup.html', {'form': form})
