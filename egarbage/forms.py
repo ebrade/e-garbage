@@ -1,5 +1,5 @@
 from django import forms
-from .models import Register, District, Cell, Village, Sector
+from .models import Register, District, Cell, Village, Sector, Contact
 from .regions import RwandaRegions
 
 
@@ -68,3 +68,9 @@ class RegisterForm(forms.ModelForm):
                                      widget=forms.Select(attrs={'class': 'form-control form-control-md'}))
     street = forms.CharField(label='Street',
                              widget=forms.TextInput(attrs={'class': 'form-control form-control-md'}))
+
+
+class ContactForm(forms.ModelForm):
+    class Meta:
+        model = Contact
+        fields = ('names', 'email', 'subject', 'message',)

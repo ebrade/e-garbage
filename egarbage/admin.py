@@ -1,5 +1,5 @@
 from django.contrib import admin
-from egarbage.models import Register, Province, District, Sector, Cell, Village
+from egarbage.models import Register, Province, District, Sector, Cell, Village, Contact
 
 # Register your models here.
 
@@ -59,3 +59,10 @@ class VillageAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Village, VillageAdmin)
+
+
+class ContactAdmin(admin.ModelAdmin):
+    list_display = ['names', 'email', 'subject', 'message']
+
+
+admin.site.register(Contact, ContactAdmin)

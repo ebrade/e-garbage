@@ -1,129 +1,173 @@
 {% extends "egarbage/layout.html" %} {% block title %} About {% endblock %} {% block content %} {% load static %}
+    {% load widget_tweaks %}
 
-<div>&nbsp;</div>
-<div>&nbsp;</div>
+    <div>&nbsp;</div>
+    <div>&nbsp;</div>
 
-<h1 class="text-center">Our mission</h1>
-<div class="row">&nbsp;</div>
+    <h1 class="text-center">Our mission</h1>
+    <div class="row">&nbsp;</div>
 
-<div class="row">
+    <div class="row">
 
-    <p class="text-center text-muted">
-        E-garbage saving system provides a unique and sustainable solution in E-waste recycling and provides
-        support to our clients, raise awareness on E-waste handling, provide E-waste collection, transport and treatment
-        services. <b>Live in green environment with no E-waste to stay safe and clean</b>.
-    </p>
-</div>
+        <p class="text-center text-muted">
+            E-garbage saving system provides a unique and sustainable solution in E-waste recycling and provides
+            support to our clients, raise awareness on E-waste handling, provide E-waste collection, transport and
+            treatment
+            services. <b>Live in green environment with no E-waste to stay safe and clean</b>.
+        </p>
+    </div>
 
-<div class=" row ">&nbsp;</div>
+    <div class=" row ">&nbsp;</div>
 
-<h1 class="text-center ">The team</h1>
-<p class="text-center text-muted "><br> ipsum dolor sit amet consectetur adipisicing elit. Accusantium voluptate asperiores accusamus provident quibusdam veniam voluptates sed nemo. Recusandae incidunt eaque eveniet veniam magni quo veritatis deleniti, optio impedit cupiditate. Lorem,
-    ipsum dolor sit amet consectetur adipisicing elit. Consectetur, voluptate! Alias cum impedit voluptates facere exercitationem nemo quasi dolorem natus a eos eveniet autem, rerum deleniti iure minima laudantium. Rem.</p>
-<div>&nbsp;</div>
-<div class=" card ">
-    <div class="row ">
-        <!-- Carousel start -->
-        <div class="col-md-5 ">
-            <div id="card-img-top ">
-                <img class="card-img-top " src="{% static 'egarbage/images/mizero.jpg' %} " alt="Card image cap ">
-            </div>
-        </div>
-        <div class="col-md-7 px-3 ">
-            <div class="card-block px-6 ">
-                <div class="card-body ">
-                    <h4 class="card-title ">Hyacenthe Mizero</h4>
-                    <h6 class="card-subtitle text-muted ">Team Leader</h6>
+    <h1 class="text-center ">The team</h1>
+    <p class="text-center text-muted "><br> ipsum dolor sit amet consectetur adipisicing elit. Accusantium voluptate
+        asperiores accusamus provident quibusdam veniam voluptates sed nemo. Recusandae incidunt eaque eveniet veniam
+        magni quo veritatis deleniti, optio impedit cupiditate. Lorem,
+        ipsum dolor sit amet consectetur adipisicing elit. Consectetur, voluptate! Alias cum impedit voluptates facere
+        exercitationem nemo quasi dolorem natus a eos eveniet autem, rerum deleniti iure minima laudantium. Rem.</p>
+    <div>&nbsp;</div>
+    <div class="card about no-gutters">
+        <div class="row ">
+            <div class="col-md-5 ">
+                <div id="card-img-top ">
+                    <img class="card-img-top " src="{% static 'egarbage/images/mizero.jpg' %} " alt="Mizero">
                 </div>
-                <div class="card-body ">
-                    <p class="card-text ">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat explicabo velit quam similique. Optio dignissimos deserunt nihil culpa. Tempora accusantium facilis velit natus ipsa quod rem asperiores quo fugiat molestiae? </p>
-                    <p class="card-text ">Made for usage, commonly searched for. Fork, like and use it. Just move the carousel div above the col containing the text for left alignment of images</p>
-                    <br>
+            </div>
+            <div class="col-md-7 px-3 ">
+                <div class="card-block px-6 ">
+                    <div class="card-body ">
+                        <h4 class="card-title ">Hyacenthe Mizero</h4>
+                        <h6 class="card-subtitle text-muted ">Team Leader</h6>
+                    </div>
+                    <div class="card-body ">
+                        <p class="card-text ">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat explicabo velit quam
+                            similique. Optio dignissimos deserunt nihil culpa. Tempora accusantium facilis velit natus
+                            ipsa quod rem asperiores quo fugiat molestiae? </p>
+                        <p class="card-text ">Made for usage, commonly searched for. Fork, like and use it. Just move
+                            the carousel div above the col containing the text for left alignment of images</p>
+                        <br>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<div>&nbsp;</div>
-<div class="card ">
-    <div class="row ">
-        <!-- Carousel start -->
-        <div class="col-md-5 ">
-            <div id="card-img-top ">
-                <img class="card-img-top " src="{% static 'egarbage/images/index.jpeg' %} " alt="Card image cap ">
-            </div>
-        </div>
-        <div class="col-md-7 px-3 ">
-            <div class="card-block px-6 ">
-                <div class="card-body ">
-                    <h4 class="card-title ">Josee UMUGWANEZA</h4>
-                    <h6 class="card-subtitle text-muted ">Marketing Lead</h6>
+    <div>&nbsp;</div>
+    <div>&nbsp;</div>
+    <div class="card about">
+        <div class="row ">
+            <div class="col-md-7 px-3 ">
+                <div class="card-block px-6 ">
+                    <div class="card-body ">
+                        <h4 class="card-title ">Josee UMUGWANEZA</h4>
+                        <h6 class="card-subtitle text-muted ">Marketing Lead</h6>
+                    </div>
+                    <div class="card-body ">
+                        <p class="card-text ">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat explicabo velit quam
+                            similique. Optio dignissimos deserunt nihil culpa. Tempora accusantium facilis velit natus
+                            ipsa quod rem asperiores quo fugiat molestiae? </p>
+                        <p class="card-text ">Made for usage, commonly searched for. Fork, like and use it. Just move
+                            the carousel div above the col containing the text for left alignment of images</p>
+                        <br>
+                    </div>
                 </div>
-                <div class="card-body ">
-                    <p class="card-text ">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat explicabo velit quam similique. Optio dignissimos deserunt nihil culpa. Tempora accusantium facilis velit natus ipsa quod rem asperiores quo fugiat molestiae? </p>
-                    <p class="card-text ">Made for usage, commonly searched for. Fork, like and use it. Just move the carousel div above the col containing the text for left alignment of images</p>
-                    <br>
+            </div>
+            <div class="col-md-5 ">
+                <div id="card-img-top ">
+                    <img class="card-img-top " src="{% static 'egarbage/images/index.jpeg' %} " alt="UMUGWANEZA">
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div>&nbsp;</div>
+    <div>&nbsp;</div>
+    <div class="card about">
+        <div class="row ">
+            <div class="col-md-5 ">
+                <div id="card-img-top ">
+                    <img class="card-img-top " src="{% static 'egarbage/images/mizererepic1.jpg' %} "
+                         alt="Card image cap ">
+                </div>
+            </div>
+            <div class="col-md-7 px-3 ">
+                <div class="card-block px-6 ">
+                    <div class="card-body ">
+                        <h4 class="card-title ">Jean Sauveur Mizerere</h4>
+                        <h6 class="card-subtitle text-muted ">Technical Lead</h6>
+                    </div>
+                    <div class="card-body ">
+                        <p class="card-text ">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat explicabo velit quam
+                            similique. Optio dignissimos deserunt nihil culpa. Tempora accusantium facilis velit natus
+                            ipsa quod rem asperiores quo fugiat molestiae? </p>
+                        <p class="card-text ">Made for usage, commonly searched for. Fork, like and use it. Just move
+                            the carousel div above the col containing the text for left alignment of images</p>
+                        <br>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<div>&nbsp;</div>
-<div class="card ">
-    <div class="row ">
-        <!-- Carousel start -->
-        <div class="col-md-5 ">
-            <div id="card-img-top ">
-                <img class="card-img-top " src="{% static 'egarbage/images/mizererepic1.jpg' %} " alt="Card image cap ">
-            </div>
-        </div>
-        <div class="col-md-7 px-3 ">
-            <div class="card-block px-6 ">
-                <div class="card-body ">
-                    <h4 class="card-title ">Jean Sauveur Mizerere</h4>
-                    <h6 class="card-subtitle text-muted ">Technical Lead</h6>
-                </div>
-                <div class="card-body ">
-                    <p class="card-text ">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat explicabo velit quam similique. Optio dignissimos deserunt nihil culpa. Tempora accusantium facilis velit natus ipsa quod rem asperiores quo fugiat molestiae? </p>
-                    <p class="card-text ">Made for usage, commonly searched for. Fork, like and use it. Just move the carousel div above the col containing the text for left alignment of images</p>
-                    <br>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div>&nbsp;</div>
-<div class="card ">
-    <div class="row ">
-        <!-- Carousel start -->
-        <div class="col-md-5 ">
-            <div id="card-img-top ">
-                <img class="card-img-top " src="{% static 'egarbage/images/index.jpeg' %} " alt="Card image cap ">
-            </div>
-        </div>
-        <div class="col-md-7 px-3 ">
-            <div class="card-block px-6 ">
-                <div class="card-body ">
-                    <h4 class="card-title ">Sostene BAGIRA</h4>
-                    <h6 class="card-subtitle text-muted ">Software Developer</h6>
-                </div>
-                <img src="holder.js/100x180/ " alt=" ">
-                <div class="card-body ">
-                    <p class="card-text ">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat explicabo velit quam similique. Optio dignissimos deserunt nihil culpa. Tempora accusantium facilis velit natus ipsa quod rem asperiores quo fugiat molestiae? </p>
-                    <p class="card-text ">Made for usage, commonly searched for. Fork, like and use it. Just move the carousel div above the col containing the text for left alignment of images</p>
-                    <br>
+    <div>&nbsp;</div>
+    <div>&nbsp;</div>
+    <div class="card about">
+        <div class="row ">
+            <div class="col-md-7 px-3 ">
+                <div class="card-block px-6 ">
+                    <div class="card-body ">
+                        <h4 class="card-title ">Sostene BAGIRA</h4>
+                        <h6 class="card-subtitle text-muted ">Software Developer</h6>
+                    </div>
+                    <img src="holder.js/100x180/ " alt=" ">
+                    <div class="card-body ">
+                        <p class="card-text ">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat explicabo velit quam
+                            similique. Optio dignissimos deserunt nihil culpa. Tempora accusantium facilis velit natus
+                            ipsa quod rem asperiores quo fugiat molestiae? </p>
+                        <p class="card-text ">Made for usage, commonly searched for. Fork, like and use it. Just move
+                            the carousel div above the col containing the text for left alignment of images</p>
+                        <br>
+                    </div>
                 </div>
             </div>
+            <div class="col-md-5 ">
+                <div id="card-img-top ">
+                    <img class="card-img-top " src="{% static 'egarbage/images/index.jpeg' %} " alt="Card image cap ">
+                </div>
+            </div>
+
         </div>
     </div>
-</div>
-<div>&nbsp;</div>
-<div>
-    <h1 class="text-center ">Contact Us</h1>
-    <p class="text-center ">The form goes here</p>
-</div>
+    <div>&nbsp;</div>
+    <div>&nbsp;</div>
+    <div>&nbsp;</div>
+    <div class="contact_form mx-auto">
+        <h1 class="text-center ">Contact Us</h1>
+        <br>
+        <form method="post">
+            {% csrf_token %}
+
+            {% for hidden in form.hidden_fields %}
+                {{ hidden }}
+            {% endfor %}
+
+            {% for field in form.visible_fields %}
+                <div class="form-group">
+                    <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                    {{ field|add_class:'form-control' }}
+                    {% for error in field.errors %}
+                        <span class="help-block">{{ error }}</span>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-success">Save
+                </button>
+                <a href="{% url 'about' %}" class="btn btn-danger">Cancel</a>
+            </div>
+        </form>
+    </div>
 {% endblock %}

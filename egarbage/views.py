@@ -1,16 +1,14 @@
-import simplejson as simplejson
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
-# Create your views here.
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
 
 from egarbage.models import Register, District, Sector, Cell, Village
-from .forms import RegisterForm
+from .forms import RegisterForm, ContactForm
 
 # The below ones are for single use.
+# from django.http import HttpResponse
 from .regions import RwandaRegions
 from .save_regions_to_db import save_prov_dis_to_db, save_sectors, save_cells, save_villages
 
@@ -20,7 +18,14 @@ def about(request):
     # save_sectors()
     # save_cells()
     # save_villages()
-    return render(request, 'egarbage/about.html')
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            contact = form.save()
+            return redirect('about')
+    else:
+        form = ContactForm()
+    return render(request, 'egarbage/about.html', {'form': form})
 
 
 @login_required

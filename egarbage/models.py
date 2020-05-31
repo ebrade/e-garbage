@@ -74,3 +74,10 @@ class Register(models.Model):
     class Meta:
         verbose_name = 'E-Waste'
         verbose_name_plural = 'E-Waste'
+
+
+class Contact(models.Model):
+    names = models.CharField(max_length=100)
+    email = models.EmailField()
+    subject = models.CharField(max_length=100)
+    message = models.TextField(max_length=600)
