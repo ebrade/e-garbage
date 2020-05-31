@@ -1,4 +1,5 @@
 import simplejson as simplejson
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.shortcuts import render
 
@@ -8,8 +9,9 @@ from django.views.generic import CreateView
 
 from egarbage.models import Register, District, Sector, Cell, Village
 from .forms import RegisterForm
-from .regions import RwandaRegions
 
+# The below ones are for single use.
+from .regions import RwandaRegions
 from .save_regions_to_db import save_prov_dis_to_db, save_sectors, save_cells, save_villages
 
 
@@ -21,11 +23,12 @@ def about(request):
     return render(request, 'egarbage/about.html')
 
 
+@login_required
 def history(request):
     return render(request, 'egarbage/history.html')
 
 
-# We have to change this thing below I think it is not necessary at all
+@login_required
 def register(request):
     form = RegisterForm()
     if request.method == 'POST':
@@ -42,6 +45,7 @@ def register(request):
     return render(request, 'egarbage/register.html', {'form': form})
 
 
+@login_required
 class RegisterItem(CreateView):
     model = Register
     success_url = reverse_lazy('register')
