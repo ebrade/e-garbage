@@ -1,4 +1,5 @@
-from django.contrib.auth import authenticate, login
+from django.conf import settings
+from django.contrib.auth import authenticate, login, get_user_model
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
@@ -10,6 +11,7 @@ from django.views.generic import CreateView, ListView, TemplateView
 
 from egarbage.models import Register, District, Sector, Cell, Village
 from .forms import RegisterForm, ContactForm, SignUpForm
+
 
 # The below ones are for single use.
 # from django.http import HttpResponse
@@ -96,6 +98,7 @@ def signup(request):
             username = form.cleaned_data.get('username')
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)
+
             login(request, user)
             return redirect('about')
     else:

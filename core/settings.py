@@ -124,3 +124,5 @@ LOGOUT_REDIRECT_URL = 'about'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static_collected')
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+AUTH_USER_MODEL = 'egarbage.User'

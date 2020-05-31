@@ -1,5 +1,7 @@
 from django.contrib import admin
-from egarbage.models import Register, Province, District, Sector, Cell, Village, Contact
+from django.contrib.auth.admin import UserAdmin
+
+from egarbage.models import Register, Province, District, Sector, Cell, Village, Contact, User
 
 # Register your models here.
 
@@ -7,6 +9,15 @@ from egarbage.models import Register, Province, District, Sector, Cell, Village,
 admin.site.site_title = " E-garbage Admin Panel"
 admin.site.site_header = "E-garbage Admin Panel"
 admin.site.index_title = ""
+
+
+class CustomUserAdmin(UserAdmin):
+    model = User
+    list_display = ('username', 'email', 'first_name', 'last_name', 'is_staff', 'is_active',)
+    list_filter = ('email', 'is_staff', 'is_active',)
+
+
+admin.site.register(User, CustomUserAdmin)
 
 
 class RegisterAdmin(admin.ModelAdmin):

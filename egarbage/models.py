@@ -1,6 +1,7 @@
-from django.contrib.auth.models import User
+from django.contrib.auth.models import AbstractUser
 from django.core.validators import MinValueValidator
 from django.db import models
+from django.conf import settings
 
 
 # Create your models here.
@@ -57,7 +58,7 @@ class Register(models.Model):
         ('Cables', 'Cables')
     )
 
-    name = models.ForeignKey(User, on_delete=models.CASCADE)
+    name = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     e_waste_type = models.CharField(max_length=30, choices=choices)
     quantity = models.IntegerField(validators=[MinValueValidator(1)])
     province = models.ForeignKey(Province, on_delete=models.SET_NULL, null=True, related_name='provinces')
@@ -85,3 +86,10 @@ class Contact(models.Model):
 
     class Meta:
         verbose_name = "Received messages"
+
+
+class User(AbstractUser):
+    phone = models.CharField(max_length=16, blank=False)
+
+    def __str__(self):
+        return self.username
