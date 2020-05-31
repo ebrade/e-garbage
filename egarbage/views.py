@@ -1,6 +1,8 @@
-from django.conf import settings
-from django.contrib.auth import authenticate, login, get_user_model
+from django.contrib import messages
+from django.contrib.auth import authenticate, login, update_session_auth_hash
+
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import PasswordChangeForm
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.contrib.auth import logout as django_logout
@@ -11,7 +13,6 @@ from django.views.generic import CreateView, ListView, TemplateView
 
 from egarbage.models import Register, District, Sector, Cell, Village
 from .forms import RegisterForm, ContactForm, SignUpForm
-
 
 # The below ones are for single use.
 # from django.http import HttpResponse
@@ -109,3 +110,20 @@ def signup(request):
 def logout(request):
     django_logout(request)
     return HttpResponseRedirect('about')
+
+
+def change_password(request):
+    if request.method == 'POST':
+        form = PasswordChangeForm(request.user, request.POST)
+        if form.is_valid():
+            user = form.save()
+            update_session_auth_hash(request, user)  # Important!
+            messages.success(request, 'Your password was successfully updated!')
+            return redirect('about')
+        else:
+            messages.error(request, 'Please correct the error below.')
+    else:
+        form = PasswordChangeForm(request.user)
+    return render(request, 'registration/change_password.html', {
+        'form': form
+    })

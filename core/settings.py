@@ -125,4 +125,13 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static_collected')
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
+
 AUTH_USER_MODEL = 'egarbage.User'
+
+EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'Egarbage'
+EMAIL_HOST_PASSWORD = 'mys3cr3tp4ssw0rd'
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = 'TestSite Team <noreply@example.com>'
+
