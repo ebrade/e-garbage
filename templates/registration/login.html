@@ -1,33 +1,18 @@
 {% extends "egarbage/layout_1.html" %} {% block title %} Login {% endblock %} {% block content %}
-<h5 class="card-title text-center"><b>Sign in</b></h5>
-{% if form.errors %}
-<p>Your username and password didn't match. Please try again.</p>
-{% endif %} {% if next %} {% if user.is_authenticated %}
-<p>Your account doesn't have access to this page. To proceed, please login with an account that has access.
-</p>
-{% else %}
-<p>Please login to proceed.</p>
-{% endif %} {% endif %}
+    {% load widget_tweaks %}
+    <h1 class="card-title text-center"><b>Sign in</b></h1>
 
-<form class="form-signin" method="post" action="{% url 'login' %}">
-    {% csrf_token %}
-    <div class="form-label-group">
-        <label for="username">Username</label>
-        <input type="username" id="username" class="form-control" placeholder="Username" {{ form.username }}
-    </div>
-    <br>
-    <div class="form-label-group">
-        <label for="inputPassword">Password</label>
-        <input type="password" id="password" class="form-control" placeholder="Password" {{ form.password }}
-    </div>
+    <h2>Login</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Login</button>
+    </form>
+    <div>&nbsp;</div>
+    <hr class="my-4">
 
-    <input class="btn btn-lg btn-block text-uppercase" type="submit" value="login" />
-    <input type="hidden" name="next" value="{{ next }}" />
-</form>
-<div>&nbsp;</div>
-{# Assumes you setup the password_reset view in your URLconf #}
-<p><a href="{% url 'password_reset' %}">Lost password?</a></p>
-<div>&nbsp;</div>
+    <p>Don't remember password? Reset it <a href="{% url 'password_reset' %}">here</a></p>
+    {#<div>&nbsp;</div>#}
 
-<p><a href="{% url 'signup' %}">Sign Up</a></p>
-<hr class="my-4"> {% endblock %}
+    <p>Don't have an account? <a href="{% url 'signup' %}">Sign Up</a></p>
+{% endblock %}

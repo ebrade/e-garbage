@@ -4,6 +4,7 @@ from django.urls import path
 
 from core import settings
 from egarbage import views
+from django.contrib.auth import views as auth_views
 
 # Some urls below needs to be modified
 from egarbage.views import signup
@@ -19,5 +20,7 @@ urlpatterns = [
     path('load_cell', views.load_cell, name='load_cell'),
     path('load_village', views.load_village, name='load_village'),
     url(r'^signup/$', views.signup, name='signup'),
-    path('logout', views.logout, name='logout')
+    path('logout', views.logout, name='logout'),
+    path('change-password/',
+         auth_views.PasswordChangeView.as_view(template_name='registration/change-password.html'), ),
 ]
