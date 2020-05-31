@@ -69,7 +69,7 @@
     <!-- The slideshow -->
     <div class="carousel-inner">
         <div class="carousel-item active">
-            <img src="{% static 'egarbage/images/cover.jpg' %} " class="img-responsive" alt="E-waste">
+            <img src="{% static 'egarbage/images/cover.jpg' %} " class="img-fluid" alt="E-waste">
         </div>
     </div>
 
@@ -84,7 +84,7 @@
 </div>
 <div class="container">
     {#Add a little space between the coursel and the rest of the contents#}
-    <div>&nbsp;</div>
+{#    <div>&nbsp;</div>#}
     {% block content %} {% endblock %}
     <div class="row">&nbsp;</div>
     <div class="row">&nbsp;</div>

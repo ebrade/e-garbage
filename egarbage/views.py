@@ -36,7 +36,7 @@ def about(request):
 @login_required
 def history(request):
     template_name = 'egarbage/history.html'
-    hist = Register.objects.all()
+    hist = Register.objects.filter(name=request.user)
     args = {'hist': hist}
     return render(request, template_name, args)
 
@@ -48,7 +48,7 @@ def register_item(request):
         form = RegisterForm(request.POST)
         if form.is_valid():
             reg = form.save(commit=False)
-            reg.name = request.user.username
+            reg.name = request.user
             reg.save()
             return render(request, 'egarbage/about.html')
 
