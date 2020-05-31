@@ -6,13 +6,14 @@
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Login</button>
+        <button type="submit" class="btn btn-success">Login</button>
+        <button class="btn btn-danger float-right"><a href="{% url 'about' %}" class="text-decoration-none">Cancel</a></button>
     </form>
     <div>&nbsp;</div>
     <hr class="my-4">
 
-    <p>Don't remember password? Reset it <a href="{% url 'password_reset' %}">here</a></p>
+    <p><small>Don't remember password? Reset it <a href="{% url 'password_reset' %}">here</a></small></p>
     {#<div>&nbsp;</div>#}
 
-    <p>Don't have an account? <a href="{% url 'signup' %}">Sign Up</a></p>
+    <p><small>Don't have an account? <a href="{% url 'signup' %}">Sign Up</a></small></p>
 {% endblock %}
