@@ -1,6 +1,8 @@
 from django.conf.urls import url
+from django.contrib.auth import logout
 from django.urls import path
 
+from core import settings
 from egarbage import views
 
 # Some urls below needs to be modified
@@ -17,4 +19,5 @@ urlpatterns = [
     path('load_cell', views.load_cell, name='load_cell'),
     path('load_village', views.load_village, name='load_village'),
     url(r'^signup/$', views.signup, name='signup'),
+    path('logout', views.logout, name='logout')
 ]

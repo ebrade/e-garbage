@@ -1,6 +1,8 @@
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
+from django.contrib.auth import logout as django_logout
 
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
@@ -95,3 +97,8 @@ def signup(request):
     else:
         form = SignUpForm()
     return render(request, 'egarbage/signup.html', {'form': form})
+
+
+def logout(request):
+    django_logout(request)
+    return HttpResponseRedirect('about')
