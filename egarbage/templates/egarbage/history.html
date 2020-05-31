@@ -5,14 +5,17 @@
 
     <div class="card mx-auto history">
         <div class="card-body">
-            {% if hist %}<ol>
-                {% for foo in hist %}
+            {% if hist %}
+                <ol>
+                    {% for foo in hist %}
 
-                        <li><h3>Item: {{ foo.e_waste_type }}</h3></li>
+                        <li><h3> {{ foo.e_waste_type }}</h3></li><br>
                         <p>Quantity: {{ foo.quantity }}</p>
                         <p>Time: {{ foo.timestamp|date:"c"|linebreaksbr }}</p>
+                        <hr>
+                    {% endfor %}
+                    </ol>
 
-                {% endfor %}</ol>
             {% else %}
                 You did not submit anything in the past.
             {% endif %}
