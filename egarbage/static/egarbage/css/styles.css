@@ -43,6 +43,6 @@ body {
 #logo {
     float: left;
     width: 250px;
-    height: 40px;
+    height: 60px;
     background: url('../images/egarbage.png') left/contain no-repeat;
 }
