@@ -86,6 +86,7 @@ class Contact(models.Model):
 
     class Meta:
         verbose_name = "Received messages"
+        verbose_name_plural = "Received messages"
 
 
 class User(AbstractUser):

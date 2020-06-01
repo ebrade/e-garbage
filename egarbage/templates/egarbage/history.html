@@ -6,13 +6,18 @@
     <div class="card mx-auto history">
         <div class="card-body">
             {% if hist %}
-                    {% for foo in hist %}
+                {% for foo in hist %}
 
-                        <h3> {{ foo.e_waste_type }}</h3><br>
-                        <p>Quantity: {{ foo.quantity }}</p>
-                        <p>Time: {{ foo.timestamp|date:"D, d M Y"|linebreaksbr }}</p>
-                        <hr>
-                    {% endfor %}
+                    <h3> {{ foo.e_waste_type }}</h3><br>
+                    <p>Quantity: {{ foo.quantity }}</p>
+                    <p>Time: {{ foo.timestamp|date:"D, d M Y"|linebreaksbr }}</p>
+                    {% if foo.collected %}
+                        <p>Collected: <b style="color: green;">yes</b></p>
+                    {% else %}
+                        <p>Collected: <b style="color: red;">No</b></p>
+                    {% endif %}
+                    <hr>
+                {% endfor %}
             {% else %}
                 You have no previous records.
             {% endif %}
