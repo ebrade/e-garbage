@@ -22,9 +22,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'i2l)iro^fst2cblqnvg=buopz0&xu*i7+kin45i8*(*&keuqe!'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['www.egarbage.rw', 'egarbage.rw', '127.0.0.1','localhost', '204.48.28.237']
 
 # Application definition
 
@@ -74,8 +74,12 @@ WSGI_APPLICATION = 'core.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'egarbage',
+        'USER': 'egarbageuser',
+        'PASSWORD': 'xAw1@9cx@h^z1WQiruywS1',
+        'HOST': 'localhost',
+        'PORT': '',
     }
 }
 
@@ -121,7 +125,7 @@ LOGIN_REDIRECT_URL = 'about'
 
 LOGOUT_REDIRECT_URL = 'about'
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'static_collected')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 

@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&display=swap');
+
+
+html,
+body {
+    width: 100%;
+    font-family: 'IBM Plex Sans', sans-serif;
+}
+
+.footer-div {
+    margin-top: 60px;
+    background: #000;
+    color: white;
+    width: 100%;
+    position: absolute;
+}
+
+.booyeah .card {
+    border: 0em;
+}
+
+.about {
+    border: 0em;
+}
+
+.contact_form {
+    width: 70%;
+    position: center;
+}
+
+.partners {
+    width: 70%;
+}
+
+#registerForm {
+    width: 70%;
+}
+
+.history {
+    width: 80%;
+}
+
+#logo {
+    float: left;
+    width: 250px;
+    height: 60px;
+    background: url('../images/egarbage.png') left/contain no-repeat;
+}

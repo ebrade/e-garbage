@@ -21,10 +21,10 @@ from .save_regions_to_db import save_prov_dis_to_db, save_sectors, save_cells, s
 
 
 def about(request):
-    # save_prov_dis_to_db()
-    # save_sectors()
-    # save_cells()
-    # save_villages()
+    #save_prov_dis_to_db()
+    #save_sectors()
+    #save_cells()
+    #save_villages()
 
     if request.method == 'POST':
         form = ContactForm(request.POST)
