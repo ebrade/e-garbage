@@ -2,19 +2,22 @@
     <div>&nbsp;</div>
     <div>&nbsp;</div>
     {% load static %}
-<h2 class="text-center">Submit E-Waste pickup </h2>
+    <h2 class="text-center">Submit E-Waste pickup </h2>
     <div>&nbsp;</div>
     <div>&nbsp;</div>
-    <form action="" method="post" class="mx-auto" id="registerForm" data-districts-url="{% url 'load_district' %}"
-          data-sectors-url="{% url 'load_sector' %}" data-cells-url="{% url 'load_cell' %}"
-          data-villages-url="{% url 'load_village' %}">
-        {% csrf_token %}
-        <table>
-            {{ form.as_p }}
-        </table>
-        <button type="submit" class="btn btn-success">Register</button>
-    </form>
-
+    <div class="card mx-auto">
+     <div class="row">&nbsp;</div>
+        <form action="" method="post" class="mx-auto" id="registerForm" data-districts-url="{% url 'load_district' %}"
+              data-sectors-url="{% url 'load_sector' %}" data-cells-url="{% url 'load_cell' %}"
+              data-villages-url="{% url 'load_village' %}">
+            {% csrf_token %}
+            <table>
+                {{ form.as_p }}
+            </table>
+            <button type="submit" class="btn btn-success">Register</button>
+        </form>
+    <div>&nbsp;</div>
+    </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type="text/javascript">
