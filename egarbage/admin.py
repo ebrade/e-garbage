@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 
+from egarbage.forms import SignUpForm
 from egarbage.models import Register, Province, District, Sector, Cell, Village, Contact, User
 
 # Register your models here.
@@ -12,9 +13,23 @@ admin.site.index_title = ""
 
 
 class CustomUserAdmin(UserAdmin):
-    model = User
+    add_form = SignUpForm
     list_display = ('username', 'email', 'first_name', 'last_name', 'is_staff', 'is_active',)
-    list_filter = ('email', 'is_staff', 'is_active',)
+    list_filter = ('username', 'is_staff', 'is_active', 'first_name')
+    fieldsets = (
+        (None, {'classes': ('wide',),
+                'fields': ('username', 'password')}),
+        ('Personal info', {'fields': ('first_name', 'last_name', 'email', 'phone',)}),
+        ('Permissions', {'fields': ('is_active', 'is_staff', 'is_superuser', 'user_permissions')}),
+        ('Important dates', {'fields': ('last_login', 'date_joined')}),
+
+    )
+    add_fieldsets = (
+        (None, {
+            'classes': ('wide',),
+            'fields': ('username', 'first_name', 'last_name', 'email', 'phone', 'password1', 'password2')}
+         ),
+    )
 
 
 admin.site.register(User, CustomUserAdmin)

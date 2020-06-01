@@ -31,7 +31,7 @@
                 <a class="nav-link" href="{% url 'about' %}">About <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'register_item' %}">Register</a>
+                <a class="nav-link" href="{% url 'register_item' %}">Submit E-Waste</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'history' %}">History</a>
@@ -83,8 +83,7 @@
 
 </div>
 <div class="container">
-    {#Add a little space between the coursel and the rest of the contents#}
-{#    <div>&nbsp;</div>#}
+
     {% block content %} {% endblock %}
     <div class="row">&nbsp;</div>
     <div class="row">&nbsp;</div>
