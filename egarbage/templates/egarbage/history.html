@@ -7,7 +7,6 @@
         <div class="card-body">
             {% if hist %}
                 {% for foo in hist %}
-
                     <h3> {{ foo.e_waste_type }}</h3><br>
                     <p>Quantity: {{ foo.quantity }}</p>
                     <p>Time: {{ foo.timestamp|date:"D, d M Y"|linebreaksbr }}</p>
@@ -23,5 +22,4 @@
             {% endif %}
         </div>
     </div>
-
 {% endblock %}

@@ -70,9 +70,6 @@ class Register(models.Model):
     collected = models.BooleanField(default=False)
     timestamp = models.DateTimeField(auto_now_add=True)
 
-    def __str__(self):
-        return self.name
-
     class Meta:
         verbose_name = 'E-Waste'
         verbose_name_plural = 'E-Waste'
